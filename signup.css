@@ -1,0 +1,105 @@
+body {  
+    background-image: url('earth.jpg');
+    color: #f8f2f8;  
+    font-family: "Roboto", Arial, Helvetica, sans-serif;  
+    font-size: 16px;  
+    font-weight: 300;  
+    letter-spacing: 0.01em;  
+    line-height: 1.6em;  
+    margin: 0;  
+    padding: 100px;   
+    }  
+    
+  h4 {  
+    font-weight: bold;  
+    margin-bottom: 2.5rem;  
+   color: #000203;  
+    /* align: center;   */
+  }
+  /* /inner box/   */
+  .form-wrapper {  
+    background:#b1a7a6;  
+    border-radius: 20px;  
+    padding: 10px;  
+  } 
+  /* /text fields/  */
+  .form-control,  
+  .custom-select {  
+    border-radius: 10px;  
+    color: #495057;  
+    background-color: #ffffff;  
+    border-color:none; 
+    max-height: 50px; 
+  }  
+  label{
+      color:#01070e;
+  }
+    
+  .form-control:focus {  
+    color: #495057;  
+    background-color: #f1f1f1;  
+    border: 1px solid #050708;  
+    outline: 0;  
+    box-shadow: none;  
+  }  
+    
+  .btn {  
+    background: #010c16;  
+    border: #000407;  
+    padding: 0.6rem 3rem;  
+    font-weight: bold;  
+  }  
+  .btn:hover,  
+  .btn:focus,  
+  .btn:active,  
+  .btn-primary:not(:disabled):not(.disabled).active,  
+  .btn-primary:not(:disabled):not(.disabled):active,  
+  .show > .btn-primary.dropdown-toggle {  
+    background: #080808;  
+    border: #080808;  
+    outline: 0;  
+  }  
+  .reg {  
+      display: inline-block;  
+      padding: 0.35em 1.2em;  
+      border: 0.1em solid #0c0c0c;  
+      margin: 0 0.3em 0.3em 0;  
+      border-radius: 0.12em;  
+      box-sizing: border-box;  
+      text-decoration: none;  
+      font-family: 'Roboto',sans-serif;  
+      font-weight: 700;  
+      color: #0c0f11;  
+      text-align: center;  
+      transition: all 0.2s;
+      border-radius: 100px;  
+      align-items: center;
+      margin:auto;
+      display:block;
+      }  
+      button:hover {  
+      color: #FFFFFF;  
+      background-color: #282929;  
+      }  
+      .button {  
+      display: inline-block;  
+      padding: 0.35em 1.2em;  
+      border: 0.1em solid #0c0c0c;  
+      margin: 0 0.3em 0.3em 0;  
+      border-radius: 0.12em;  
+      box-sizing: border-box;  
+      text-decoration: none;  
+      font-family: 'Roboto',sans-serif;  
+      font-weight: 700;  
+      color: #0c0f11;  
+      text-align: center;  
+      transition: all 0.2s;
+      border-radius: 100px;  
+       align-items: center; 
+       /* margin:auto; 
+      display:block; */
+      }  
+      .button:hover {  
+      color: #FFFFFF;  
+      background-color: #282929;  
+      } 
