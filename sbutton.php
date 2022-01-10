@@ -7,40 +7,43 @@
     <link rel="stylesheet" href="button.css">
     <link rel="icon" href="images/nwicon.png" type="image/png">
 
-    <title>Search</title>
+    <title>Launch</title>
 </head>
+
 <body>
   <ul>
     <li>  
-      <a href="/DBMS-Project/detail.php"><button class="btn" style="--content: 'Get the list of Satellites here..';">
+      <a href="/DBMS-Project/scientist.php"><button class="btn" style="--content: 'Launch Satellite here....';">
         <div class="left"></div>
-          Get the list of Satellites here..
+          Launch Satellite here....
         <div class="right"></div>
       </button></a></li>
       
 
     <li>
-     <a href="/DBMS-Project/organisation.php"> <button class="btn" style="--content: 'Know about Organizational Launches!';">
+     <a href="/DBMS-Project/update.php"> <button class="btn" style="--content: 'Update Scientist Info here';">
         <div class="left"></div>
-        Know about Organizational Launches!
+        Update Scientist Info here!
         <div class="right"></div>
       </button></a>
     </li>  
 
     <li>
-      <a href="/DBMS-Project/search.php"><button class="btn" style="--content: 'Search you Favorite Satellite here!';">
+      <a href="/DBMS-Project/update.php"><button class="btn" style="--content: 'Update Satellite Info here!';">
         <div class="left"></div>
-          Search you Favorite Satellite here!
+          Update Satellite Info here!
         <div class="right"></div>
       </button></a>
     </li>
-    <li>
-      <a href="/DBMS-Project/doc.php"><button class="btn" style="--content: 'Know about few Terminologies over here!';">
+    <!-- <li>
+      <a href="/DBMS-Project/mainpage.php"><button class="btn" style="--content: 'Oops Landed in a wrong page! Go back';">
         <div class="left"></div>
-           Know about few Terminologies over here!
+           Oops Landed in a wrong page! Go back
         <div class="right"></div>
-      </button></a></li>
+      </button></a></li> -->
   </ul>
+
+
 
   
   

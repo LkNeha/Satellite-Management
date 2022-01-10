@@ -67,7 +67,7 @@ if(!isset($_SESSION['VUNAME'])){
              
              <div class="card">
                 <div class="front">
-                  <img src="ritvik.jpg" alt="">
+                  <img src="images/ritvik.jpg" alt="">
                     <div class="details">
                       <h2>Ritvik S Shetty</h2>
                       <span>Student/Developer</span>
@@ -94,7 +94,7 @@ if(!isset($_SESSION['VUNAME'])){
             
                <div class="card1">
                <div class="front1">
-                 <img src="neha.jpeg" alt="">
+                 <img src="images/neha.jpeg" alt="">
                    <div class="details">
                      <h2>Neha L K</h2>
                      <span>Student/Developer</span>
@@ -126,19 +126,19 @@ if(!isset($_SESSION['VUNAME'])){
                 <div class="box">
                   <h2 style="color: black;">LAUNCH</h2>
                   <div class="information">
-                  <img src="satlaunch.jpg" alt="">
+                  <img src="images/satlaunch.jpg" alt="">
 
                   </div>
                 <p style="color: black;" >Hey! You tryna launch a Satellite?
                 Then what are you waiting for!!
                  Here we gooo..</p>
-                <a href="/DBMS-Project/scientist.php"  rel="noopener noreferrer" target="_parent"><button class="btn1">Register</button></a>
+                <a href="/DBMS-Project/sbutton.php"  rel="noopener noreferrer" target="_parent"><button class="btn1">Register</button></a>
                 </div>
                 <div class="box">
                   <h2 style="color: black;">INFORMATION</h2>
                   <div class="information">
                    
-                   <img src="launch.jpg" alt=""> 
+                   <img src="images/launch.jpg" alt=""> 
                   </div>
                   <p style="color: black;">Psst! Looking for some amazing Satellite information. Come on lets goo.. </p>
                   <a href="/DBMS-Project/button.php"  rel="noopener noreferrer" target="_parent"><button class="btn1">CLICK HERE</button></a>
@@ -148,7 +148,7 @@ if(!isset($_SESSION['VUNAME'])){
                 <h2 style="color: black;">New Launches?</h2>
 
                   <div class="information">
-                    <img src="login3.jpg" alt="">
+                    <img src="images/login3.jpg" alt="">
                   </div>
                   <p style="color: black;"> Any New upcoming on board? Lets have a look at em.. </p>
                   <a href="/DBMS-Project/new.php"  rel="noopener noreferrer" target="_parent"><button class="btn1">Letss go</button></a>

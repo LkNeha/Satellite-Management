@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="icon" href="nwicon.png" type="image/png">
+    <link rel="icon" href="images/nwicon.png" type="image/png">
 
 
 
@@ -15,7 +15,7 @@
 </head>
 <style>
     body{
-    background-image: url('nightsky.jpg');
+    background-image: url('images/nightsky.jpg');
     background-color: black;
     color: whitesmoke;
     margin: 0;
@@ -25,10 +25,7 @@
 }
 </style>
 <body>
-<form class="form-inline md-form mr-auto" action="" method="post"><br>
-  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search" autocomplete="off">
-  <button class="btn btn-unique btn-rounded btn-sm my-0 waves-effect waves-light" style="background-color:#ccd5ae" type="submit">Search</button>
-</form>
+
     <table border="7" class="table">
     <!-- <thead class="table-dark"> -->
         <tr>
@@ -50,7 +47,7 @@
 <?php
 
 include 'connect.php';
-$query="select * from satellite S ,organisation O, rocket R where S.ORGID=O.ORGID and S.RID=R.RID ";
+$query="select * from satellite S ,organisation O, rocket R where S.ORGID=O.ORGID and S.RID=R.RID order by SATID";
 $result=mysqli_query($connection,$query);
 $total=mysqli_num_rows($result);
 
