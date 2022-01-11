@@ -19,7 +19,7 @@ html, body {
   align-items: center;
   justify-content: center;
   background-color: var(--bg-color);
-  background-image: url('space.jpg'); 
+  background-image: url('images/space.jpg'); 
   background-size: cover;
   background-position-y:-100px ;
   

@@ -20,27 +20,21 @@
       </button></a></li>
       
 
-    <li>
-     <a href="/DBMS-Project/update.php"> <button class="btn" style="--content: 'Update Scientist Info here';">
-        <div class="left"></div>
-        Update Scientist Info here!
-        <div class="right"></div>
-      </button></a>
-    </li>  
+      
 
     <li>
-      <a href="/DBMS-Project/update.php"><button class="btn" style="--content: 'Update Satellite Info here!';">
+      <a href="/DBMS-Project/upsci.php"><button class="btn" style="--content: 'Update Satellite Info here!';">
         <div class="left"></div>
           Update Satellite Info here!
         <div class="right"></div>
       </button></a>
     </li>
-    <!-- <li>
+    <li>
       <a href="/DBMS-Project/mainpage.php"><button class="btn" style="--content: 'Oops Landed in a wrong page! Go back';">
         <div class="left"></div>
-           Oops Landed in a wrong page! Go back
+           Oops Landed in a wrong page? Go back
         <div class="right"></div>
-      </button></a></li> -->
+      </button></a></li>
   </ul>
 
 

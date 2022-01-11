@@ -51,7 +51,7 @@ if(!isset($_SESSION['VUNAME'])){
        </nav>
        <div class="right">
       <!-- right box for buttons  -->
-      <a href="/project/login/login.php"><button class="btn" onclick="alert('LOGGED OUT')">log out</button></a>
+      <a href="/DBMS-Project/login.php"><button class="btn" onclick="alert('LOGGED OUT')">log out</button></a>
     
     </div>
        

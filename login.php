@@ -9,9 +9,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   $sql = "select * from `v_credentials` where VUNAME='$username' and VPASSWD='$passwd'";
   $result=mysqli_query($connection,$sql);
   if($result){
+   $count="update `visitor`  set count =(count + 1)  where VUNAME='$username'";
+   $query2 = mysqli_query($connection,$count);
     $num=mysqli_num_rows($result);
     if($num>0){
       echo '<script type="text/javascript">alert("logged successfully")</script>';
+      // $search_user_query = "select * from `visitor` where   VUNAME='$username' and  VPASSWD ='$passwd'";
+      // $search_user_result = mysqli_query($connection,$search_user_query);
+      
       session_start();
       $_SESSION['VUNAME']=$username;
       header('location:mainpage.php');
@@ -21,7 +26,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   }
  }
 }
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
    <head>

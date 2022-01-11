@@ -96,8 +96,8 @@ body {
       transition: all 0.2s;
       border-radius: 100px;  
        align-items: center; 
-       /* margin:auto; 
-      display:block; */
+       margin:auto; 
+      display:block;
       }  
       .button:hover {  
       color: #FFFFFF;  

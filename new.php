@@ -27,7 +27,7 @@
  <section class="showcase">
     <header>
     </header>
-    <video src="satellite.mp4" muted loop autoplay></video>
+    <video src="images/satellite.mp4" muted loop autoplay></video>
     <div class="overlay"></div>
     <div class="text">
       <h2>Oops! We dont see any new entries </h2> 
