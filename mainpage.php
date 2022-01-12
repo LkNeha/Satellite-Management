@@ -150,7 +150,7 @@ if(!isset($_SESSION['VUNAME'])){
 
         <section id="contactus">
         <h2 >CONTACT US</h2>
-        <h4>Team</h4>
+        <h5>Team</h5>
         <span>Neha L K: <a href="" style="color: blanchedalmond;">nehalk@gmail.com</a></span>
         <span>Ritvik S Shetty: <a href="https://mail.google.com/" style="color: blanchedalmond;">ritviksshetty@gmail.com
       </a</span>
