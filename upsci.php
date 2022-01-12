@@ -116,7 +116,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 <style> 
  
 body {  
-  background-image: url('image.jpg');
+  background-image: url('images/image.jpg');
   background-repeat: no-repeat;
   background-size: cover; 
   color: #f8f2f8;  

@@ -30,9 +30,9 @@
       </button></a>
     </li>
     <li>
-      <a href="/DBMS-Project/mainpage.php"><button class="btn" style="--content: 'Oops Landed in a wrong page! Go back';">
+      <a href="/DBMS-Project/mainpage.php"><button class="btn" style="--content: 'Oops Wrong page! Go back..';">
         <div class="left"></div>
-           Oops Landed in a wrong page? Go back
+           Oops Wrong page? Go back..
         <div class="right"></div>
       </button></a></li>
   </ul>

@@ -21,7 +21,7 @@ if(!isset($_SESSION['VUNAME'])){
 
 <body>
   <div >
-  <h4 class="display">
+  <h4  style="font-family:'Poppins',sans-serif" class="display">
     Hello
     <?php
      echo $_SESSION['VUNAME'];
