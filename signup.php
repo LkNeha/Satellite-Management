@@ -24,11 +24,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       $user=1;
   }
   else{
-     $query = "insert into `visitor` (`VUNAME`,`VFNAME`,`VLNAME`,`VGENDER`,`VDOB`,`VDESIG`,`VEMAIL`,`VPHONE`,`VPASSWD`,`VCOUNTRY`) values ('$username','$fname','$lname','$gender','$dob','$desig','$email','$phone','$pswd','$country')";
+    $query = "insert into `visitor` (`VUNAME`,`VFNAME`,`VLNAME`,`VGENDER`,`VDOB`,`VDESIG`,`VEMAIL`,`VPHONE`,`VPASSWD`,`VCOUNTRY`) values ('$username','$fname','$lname','$gender','$dob','$desig','$email','$phone','$pswd','$country')";
     $result= mysqli_query($connection,$query);
     if($result){
-      // echo '<script type="text/javascript">alert("Your information is saved successfully")</script>';
-      $sucess=1;
+          $sucess=1;
     }
     else{
       echo '<script type="text/javascript">alert("Data  not  Inserted")</script>';

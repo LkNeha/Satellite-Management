@@ -13,19 +13,10 @@ if(!isset($_SESSION['VUNAME'])){
     <title>Main Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="mainpage.css">
-  
-    <!-- *********** -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet"/>
-    <!-- Stylesheet -->
-    <!-- <link rel="stylesheet" href="style1.css" /> -->
-    <link rel="icon" href="nwicon.png" type="image/png">
-
-  
+    <link rel="icon" href="images/nwicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-
 </head>
 
 <body>
@@ -37,10 +28,8 @@ if(!isset($_SESSION['VUNAME'])){
     ?>
   </h4>
   </div>
-  
-    <header>
-      
-        <nav class="navbar">
+  <header>
+      <nav class="navbar">
          <ul class="navi">
             <li class="item"><a href="#">Home</a></li>
             <li class="item"><a href="#aboutus">About Us</a></li>
@@ -58,7 +47,7 @@ if(!isset($_SESSION['VUNAME'])){
     </header>   
          <section>
              <h3>Welcome to  our DBMS Project </h3>
-             <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla unde placeat voluptatem quas fugiat maiores a repudiandae animi harum libero, nihil veniam provident culpa doloremque enim esse eligendi! Totam hic maxime perspiciatis, recusandae velit cupiditate.</p> -->
+             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla unde placeat voluptatem quas fugiat maiores a repudiandae animi harum libero, nihil veniam provident culpa doloremque enim esse eligendi! Totam hic maxime perspiciatis, recusandae velit cupiditate.</p>
          </section>
           
          <section id="aboutus">

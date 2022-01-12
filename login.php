@@ -1,4 +1,3 @@
-
 <?php
 if($_SERVER['REQUEST_METHOD']=='POST'){
   include 'connect.php';
@@ -9,25 +8,22 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   $sql = "select * from `v_credentials` where VUNAME='$username' and VPASSWD='$passwd'";
   $result=mysqli_query($connection,$sql);
   if($result){
-   $count="update `visitor`  set count =(count + 1)  where VUNAME='$username'";
-   $query2 = mysqli_query($connection,$count);
-    $num=mysqli_num_rows($result);
-    if($num>0){
-      echo '<script type="text/javascript">alert("logged successfully")</script>';
-      // $search_user_query = "select * from `visitor` where   VUNAME='$username' and  VPASSWD ='$passwd'";
-      // $search_user_result = mysqli_query($connection,$search_user_query);
-      
-      session_start();
-      $_SESSION['VUNAME']=$username;
-      header('location:mainpage.php');
-  }
+      $trigger="create trigger after_insert after insert on `visitor` for each row begin update `visitor` set new.count=1 where VUNAME='$username' end;";
+      mysqli_query($connection,$trigger);
+      $count="update `visitor`  set count =(count + 1)  where VUNAME='$username'";
+      $query2 = mysqli_query($connection,$count);
+      $num=mysqli_num_rows($result);
+      if($num>0){
+         echo '<script type="text/javascript">alert("logged in successfully")</script>';
+         session_start();
+         $_SESSION['VUNAME']=$username;
+         header('location:mainpage.php');
+      }
   else{
-     echo '<script type="text/javascript">alert("invalid")</script>';
+     echo '<script type="text/javascript">alert("Invalid credentials. Have you signed Up?")</script>';
   }
  }
 }
-
-
 ?>
 
 <!DOCTYPE html>
