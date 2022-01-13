@@ -30,9 +30,9 @@
       </button></a>
     </li>
     <li>
-      <a href="/DBMS-Project/mainpage.php"><button class="btn" style="--content: 'Oops Wrong page! Go back..';">
+      <a href="/DBMS-Project/delsci.php"><button class="btn" style="--content: 'Delete Satellite Info here!';">
         <div class="left"></div>
-           Oops Wrong page? Go back..
+           Delete Satellite Info here!
         <div class="right"></div>
       </button></a></li>
   </ul>

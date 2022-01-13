@@ -249,8 +249,8 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
           <label for="sid">Scientist ID</label>
           <input type="text" id="sid" name="sid" placeholder="Your unique id.." autocomplete="off" required>
 
-          <label for="sid">Email</label><br>
-          <input type="email" id="sid" name="semail" placeholder="Your email" autocomplete="off" required><br>
+          <label for="sid">Email</label>
+          <input type="text" id="sid" name="semail" placeholder="Your email" autocomplete="off" required><br>
 
           <label for="organization">Organization ID</label>
           <input type="text" id="org" name="orgid" placeholder="Organization id.." autocomplete="off" required>

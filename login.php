@@ -6,7 +6,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   $sql = "select * from `v_credentials` where VUNAME='$username' and VPASSWD='$passwd'";
   $result=mysqli_query($connection,$sql);
   if($result){
-      $count="update `visitor`  set count =(count + 1)  where VUNAME='$username'";
+      $count="update `visitor`  set num =(num + 1)  where VUNAME='$username'";
       $query2 = mysqli_query($connection,$count);
       $num=mysqli_num_rows($result);
       if($num>0){
