@@ -1,4 +1,8 @@
  <?php
+ $success=0;
+ $fail=0;
+ $rock=0;
+ $org=0;
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
   include 'connect.php';
@@ -31,7 +35,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   if($result){
     $num=mysqli_num_rows($result);
     if($num<=0){
-      echo '<script type="text/javascript">alert("Organization id is invalid")</script>';
+      $org=1;
     }
     else{
       $query="insert into `scientist` (`SID`,`SNAME`,`SEMAIL`,`ORGID`) values ('$sid','$sname','$semail','$orgid')";
@@ -42,8 +46,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         if($output){
           $count=mysqli_num_rows($output);
           if($count<=0){
-            echo '<script type="text/javascript">alert("Rocket id is invalid")</script>';
-
+             $rock=1;
           }
           else{
            
@@ -59,58 +62,32 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 $query4="insert into `dropped` (`SATID`,`RID`) values ('$satid','$rid')";
                 $result4=mysqli_query($connection,$query4);
                 if($result4){
-                  $query5="insert into `belongs` (`SID`,`ORGID`) values ('$sid','$orgid')";
-                  $result5=mysqli_query($connection, $query5);
-                  if($result5){
-                    echo '<script type="text/javascript">alert("The data is inserted successfully")</script>';
-                  }
-                  else{
-                    echo '<script type="text/javascript">alert("oops there is an error in "belongs" Try reenterign")</script>';
-
-                  }
+                  $success=1;
                 }
                 else{
-                  echo '<script type="text/javascript">alert("oops there is an error in "dropped" Try reenterign")</script>';
+                  $fail=1;
                 }
               }
               else{
-                echo '<script type="text/javascript">alert("oops there is an error in follows. Try reentering")</script>';
-        
+                  $fail=1;        
               }
             }
             else{
-              echo '<script type="text/javascript">alert("oops there is an error conditions. Try reenterign")</script>';
-      
+                $fail=1;
             }
-          
-
-            }
-          else{
-            echo '<script type="text/javascript">alert("oops there is an error in satellite info. Try reentering")</script>';
-  
           }
-
+          else{
+              $fail=1;  
+          }
           }
         }
-          
-
       }
       else{
-        echo '<script type="text/javascript">alert("oops there is an error scientist info. Try reentering")</script>';
-
+           $fail=1;
       }
-      
-      
-      
-      
-      
-      
-      
     }
-
   }else{
-    echo '<script type="text/javascript">alert("oops there is an error Try reenterign")</script>';
-
+      $fail=1;
   }
 }
 ?> 
@@ -220,6 +197,47 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
              
 </head>
 <body>
+<?php
+
+if($fail){
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Error Occured</strong> Try Re-entering
+  
+</div>';
+}
+
+?>
+<?php
+
+if($rock){
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Ayoo</strong> Wrong Rocket ID
+  
+</div>';
+}
+
+?>
+<?php
+
+if($org){
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Ayoo</strong> Wrong Organization ID
+  
+</div>';
+}
+
+?>
+
+<?php
+
+if($success){
+echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+<strong>Great!</strong> Info Entered Successfully!  
+
+</div>';
+}
+
+?>
   <h3>Enter the details</h3>
     <div class="container">
         <form action="scientist.php" method="post" enctype="multipart/form-data">
@@ -231,8 +249,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           <label for="sid">Scientist ID</label>
           <input type="text" id="sid" name="sid" placeholder="Your unique id.." autocomplete="off" required>
 
-          <label for="sid">Email</label>
-          <input type="email" id="sid" name="semail" placeholder="Your email" autocomplete="off" required>
+          <label for="sid">Email</label><br>
+          <input type="email" id="sid" name="semail" placeholder="Your email" autocomplete="off" required><br>
 
           <label for="organization">Organization ID</label>
           <input type="text" id="org" name="orgid" placeholder="Organization id.." autocomplete="off" required>

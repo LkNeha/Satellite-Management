@@ -3,8 +3,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   include 'connect.php';
   $username=$_POST['username'];
   $passwd=$_POST['passwd'];
-  $query="create view v_credentials as select VUNAME,VPASSWD from `visitor`";
-  mysqli_query($connection,$query);
   $sql = "select * from `v_credentials` where VUNAME='$username' and VPASSWD='$passwd'";
   $result=mysqli_query($connection,$sql);
   if($result){

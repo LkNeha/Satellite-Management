@@ -9,10 +9,10 @@ body{
     height: 2525px;
     
 }
-h4{
+.user{
   position: absolute;
-  right: 128px;
-  top:33px;
+  right: 130px;
+  top:35px;
   display: inline-block;
 }
 header::before{

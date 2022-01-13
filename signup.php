@@ -1,7 +1,7 @@
 <?php
-
 $user=0;
 $sucess=0;
+$passw=0;
 if($_SERVER['REQUEST_METHOD']=='POST'){
   include 'connect.php';
   $username=$_POST['username'];
@@ -13,8 +13,17 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   $email=$_POST['email'];
   $phone=$_POST['phone'];
   $pswd=$_POST['pswd'];
+  $cpswd=$_POST['cpswd'];
   $country=$_POST['countries'];
-  $sql ="select * from `visitor` where VUNAME='$username'";
+  $number = preg_match('@[0-9]@', $pswd);
+  $uppercase = preg_match('@[A-Z]@', $pswd);
+  $lowercase = preg_match('@[a-z]@', $pswd);
+  $specialChars = preg_match('@[^\w]@', $pswd);
+  if(strlen($pswd) < 8 || !$number || !$uppercase || !$lowercase || !$specialChars && ($pswd==$cpswd)) {
+    $passw=1;
+  }
+  else{
+    $sql ="select * from `visitor` where VUNAME='$username'";
   $result=mysqli_query($connection,$sql);
   if($result){
     $num=mysqli_num_rows($result);
@@ -35,6 +44,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   }
  }
 }
+  
+}
 ?>
 
 <! DOCTYPE html>  
@@ -46,7 +57,7 @@ Registration Page
 <meta name="viewport" content="width=device-width, initial-scale=1">  
 <head>  
 <link rel="stylesheet" href="signup.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -57,58 +68,38 @@ Registration Page
 <link rel="icon" href="images/nwicon.png" type="image/png">
 </head> 
 <script>
-   
-  // function CONFIRM(){
-  //   var password=document.forms["Regform"]["pswd"];
-  //       var conpassword=document.forms["Regform"]["cpswd"];
-  //       var passw=  /^(?=.[A-Za-z])(?=.\d)[A-Za-z\d]{8,}$/;
-  //   if (password.value.match(passw)){
-  //     return REGFORM();
-  //   }
-  //   else {
-  //     window.alert("Password should contain atleast one upper case and special characters: ");
-  //     return false;
-  //   }
-  // }
-    function REGFORM(){
-      var password=document.forms["Regform"]["pswd"];
-        var conpassword=document.forms["Regform"]["cpswd"];
-        // var passw=  /^[A-Za-z]\w{7,14}$/;
-       if(password.value != conpassword.value){
-          window.alert("Please enter correct password");
-          password.focus();
-          return false;
-       }
-       
-      //dummy alert box
-      // else{
-      //   window.alert("Your information is saved Succesfuly!")
-      //   return true;
-      // }
-      
-}
+    const togglePassword = document.querySelector('#togglePassword');
+  const password = document.querySelector('#id_password');
+ 
+  togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'pswd';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
 </script> 
 <body>
 <?php
-
 if($user){
   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>Oh no sorry</strong> Username already exists. Choose a different one!
-  
-</div>';
+  </div>';
 }
-
 ?>
-
 <?php
-
+if($passw){
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Note </strong> Password must be at least 8 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.";
+  </div>';
+}
+?>
+<?php
 if($sucess){
 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 <strong>Woohooo</strong> Your signed in Successfully! Now go back to login page  
-
 </div>';
 }
-
 ?>
 
 <section class="contact-from pt-4">  
@@ -121,17 +112,17 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
               <h4> <b> FILL IN </b> </h4>  
             </div>  
           </div>  
-          <form _lpchecked="1" name="Regform" action="signup.php" onsubmit="return REGFORM()"  method="post"> 
+          <form _lpchecked="1" name="Regform" action="signup.php"  method="post"> 
             
             <div class="row">  
               <div class="col-md-6">  
                 <div class="form-group">  
-         <input type="text" class="form-control" name="fname" placeholder="First name" autocomplete="off" required >  
+         <input type="text" class="form-control" name="fname" placeholder="First name" autocomplete="off" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required >  
                 </div>  
               </div>  
               <div class="col-md-6">  
                 <div class="form-group">  
-                  <input type="text" name="lname" class="form-control" placeholder="Last name" autocomplete="off" required >  
+                  <input type="text" name="lname" class="form-control" placeholder="Last name" autocomplete="off" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required >  
                 </div>  
               </div> 
               <div class="col-md-6">  
@@ -146,7 +137,7 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
               </div>  
               <div class="col-md-6">  
                 <div class="form-group">  
-                  <input type="text" class="form-control" name="designation" placeholder="Designation" autocomplete="off" required >  
+                  <input type="text" class="form-control" name="designation" placeholder="Designation" autocomplete="off" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required >  
                 </div>  
               </div> 
               <div class="col-md-6">  
@@ -169,7 +160,7 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
   
               <div class="col-md-6">  
                 <div class="form-group">  
-                  <input type="text" name="phone" class="form-control" placeholder="Phone number" autocomplete="off" required >  
+                  <input type="tel" name="phone" class="form-control" placeholder="Phone number" autocomplete="off" onkeypress="return([0-9]{2}?-[0-9]{10})" required >  
                 </div>  
               </div>  
   
@@ -180,7 +171,9 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
               </div>  
     <div class="col-md-6">  
                 <div class="form-group">  
-                  <input name="pswd" type="password" class="form-control" placeholder="Password" autocomplete="off" required >  
+                  <input id="id_password" name="pswd" type="password" class="form-control" placeholder="Password" autocomplete="off" required="" >
+                  <i class="far fa-eye" id="togglePassword" style="margin-left: 270px; margin-top:-25px; cursor: pointer;"></i>
+  
                 </div>  
               </div>  
   
@@ -396,7 +389,4 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 </div>  
 </section>  
 </body>  
-<script type="text/javascript">
-$(".custom-select").chosen();
-</script>
 </html>
