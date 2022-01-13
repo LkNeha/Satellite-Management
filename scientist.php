@@ -47,7 +47,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           }
           else{
            
-            $query1="insert into `satellite` (`SATID`,`SATNAME`,`SATUSER`,`SATPURPOSE`,`DATE_OF_LAUNCH`,`LIFETIME`,`SATIMAGE`,`RID`,`ORGID`) values ('$satid','$satname','$satuser','$satpurpose','$launchdate','$satlife','','$rid','$orgid')";
+            $query1="insert into `satellite` (`SATID`,`SATNAME`,`SATUSER`,`SATPURPOSE`,`DATE_OF_LAUNCH`,`LIFETIME`,`SATIMAGE`,`RID`,`ORGID`,`SID`) values ('$satid','$satname','$satuser','$satpurpose','$launchdate','$satlife','','$rid','$orgid','$sid')";
             $result1=mysqli_query($connection,$query1);
           if($result1){
             $query2="insert into `conditions`(`CONDID`,`CLASS_OF_ORBIT`,`ORBIT_TYPE`,`LONGITUDE`,`APOGEE`,`PERIGEE`,`ECCENTRICITY`,`INCLINATION`,`LAUNCHMASS`,`PERIOD`,`POWER`) values ('$conid','$orbit','$type','$longi','$apogee','$perigee','$eccen','$incli','$launchmass','$launchtime','$power')";
@@ -59,7 +59,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 $query4="insert into `dropped` (`SATID`,`RID`) values ('$satid','$rid')";
                 $result4=mysqli_query($connection,$query4);
                 if($result4){
-                  echo '<script type="text/javascript">alert("The data is inserted successfully")</script>';
+                  $query5="insert into `belongs` (`SID`,`ORGID`) values ('$sid','$orgid')";
+                  $result5=mysqli_query($connection, $query5);
+                  if($result5){
+                    echo '<script type="text/javascript">alert("The data is inserted successfully")</script>';
+                  }
+                  else{
+                    echo '<script type="text/javascript">alert("oops there is an error in "belongs" Try reenterign")</script>';
+
+                  }
                 }
                 else{
                   echo '<script type="text/javascript">alert("oops there is an error in "dropped" Try reenterign")</script>';
@@ -218,21 +226,21 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
       
           <label for="name">Scientist Name</label>
-          <input type="text" id="name" name="sname" placeholder="Your name..">
+          <input type="text" id="name" name="sname" placeholder="Your name.." autocomplete="off" required>
       
           <label for="sid">Scientist ID</label>
-          <input type="text" id="sid" name="sid" placeholder="Your unique id..">
+          <input type="text" id="sid" name="sid" placeholder="Your unique id.." autocomplete="off" required>
 
           <label for="sid">Email</label>
-          <input type="text" id="sid" name="semail" placeholder="Your email">
+          <input type="email" id="sid" name="semail" placeholder="Your email" autocomplete="off" required>
 
           <label for="organization">Organization ID</label>
-          <input type="text" id="org" name="orgid" placeholder="Organization id..">
+          <input type="text" id="org" name="orgid" placeholder="Organization id.." autocomplete="off" required>
 
           
 
           <label for="Position">Designation</label>
-          <input type="text" id="pos" name="desig" placeholder="Your Designation..">
+          <input type="text" id="pos" name="desig" placeholder="Your Designation.." autocomplete="off" required>
       
          
       
@@ -251,12 +259,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         <div class="row">  
                           <div class="col-md-6">  
                             <div class="form-group">  
-                     <input type="text" class="form-control" name="satname" placeholder="Satellite name" required >  
+                     <input type="text" class="form-control" name="satname" placeholder="Satellite name" autocomplete="off" required >  
                             </div>  
                           </div>  
                           <div class="col-md-6">  
                             <div class="form-group">  
-                              <input type="text" class="form-control" name="satid" placeholder="Satellite id" required >  
+                              <input type="text" class="form-control" name="satid" placeholder="Satellite id" autocomplete="off" required >  
                             </div>  
                           </div>  
                            
@@ -264,14 +272,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             
                           <div class="col-md-6">  
                             <div class="form-group">  
-                              <input type="text" class="form-control"  name="satuser" placeholder="Satellite user" required >  
+                              <input type="text" class="form-control"  name="satuser" placeholder="Satellite user" autocomplete="off" required >  
                             </div>  
                           </div>
                           
                           
                           <div class="col-md-6">  
                             <div class="form-group">  
-                              <input type="text" class="form-control" name="satpurpose" placeholder="Satellite purpose" required >  
+                              <input type="text" class="form-control" name="satpurpose" placeholder="Satellite purpose" autocomplete="off" required >  
                             </div>  
                           </div>  
                           
@@ -308,62 +316,62 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
           
          <label for="Position">Rocket ID</label>
-         <input type="text" id="rid" name="rid" placeholder="RocketID..">
+         <input type="text" id="rid" name="rid" placeholder="RocketID.." autocomplete="off" required>
 
          
          <label for="Position">Condition ID</label>
-         <input type="text" id="pos" name="conid" placeholder="Enter the condition id..">
+         <input type="text" id="pos" name="conid" placeholder="Enter the condition id.." autocomplete="off" required>
 
          
          <label for="Position">Class of orbit</label>
-         <input type="text" id="pos" name="orbit" placeholder="Enter the class of orbit..">
+         <input type="text" id="pos" name="orbit" placeholder="Enter the class of orbit.." autocomplete="off" required>
 
          
          <label for="Position">Orbit type</label>
-         <input type="text" id="pos" name="type" placeholder="Enter the orbit type..">
+         <input type="text" id="pos" name="type" placeholder="Enter the orbit type.." autocomplete="off" required>
 
          
          <label for="Position">Longitude</label>
-         <input type="text" id="pos" name="longi" placeholder="Enter the longitde..">
+         <input type="text" id="pos" name="longi" placeholder="Enter the longitde.." autocomplete="off" required>
 
          <label for="Position">Apogee</label>
-         <input type="text" id="pos" name="apogee" placeholder="Enter apogee values">
+         <input type="text" id="pos" name="apogee" placeholder="Enter apogee values" autocomplete="off" required>
 
          <label for="Position">Perigee</label>
-         <input type="text" id="pos" name="perigee" placeholder="Enter the perigee value">
+         <input type="text" id="pos" name="perigee" placeholder="Enter the perigee value" autocomplete="off" required>
         
          
          <label for="Position">Eccentricity</label>
-         <input type="text" id="pos" name="eccen" placeholder="Enter the eccentricity..">
+         <input type="text" id="pos" name="eccen" placeholder="Enter the eccentricity.." autocomplete="off" required>
 
          
          <label for="Position">Inclination</label>
-         <input type="text" id="pos" name="incli" placeholder="Enter the inclination..">
+         <input type="text" id="pos" name="incli" placeholder="Enter the inclination.." autocomplete="off" required>
 
          
          <label for="Position">Launch mass</label>
-         <input type="text" id="pos" name="launchmass" placeholder="Enter the launch mass..">
+         <input type="text" id="pos" name="launchmass" placeholder="Enter the launch mass.." autocomplete="off" required>
 
          
          <label for="Position">Power</label>
-         <input type="text" id="pos" name="power" placeholder="Enter the power..">
+         <input type="text" id="pos" name="power" placeholder="Enter the power.." autocomplete="off" required>
 
          
          <label for="Position">Launch Time</label>
-         <input type="time" id="pos" name="launchtime" placeholder="Enter the launch time..">
+         <input type="time" id="pos" name="launchtime" placeholder="Enter the launch time.." autocomplete="off" required>
 
 
          <br>
          <br>
 
-          <label for="subject">Write about the Satellite</label>
-          <textarea id="subject" name="subject" placeholder="Write.." style="height:200px"></textarea>
+          <label for="subject">Write about the Satellite </label>
+          <textarea id="subject" name="subject" placeholder="Write..or Optional" style="height:200px"></textarea>
           <br>
           <br>
 
           <label for="image"> Upload the Launch Certificate</label>
           <div class="input-group mb-3">
-          <input type="file" class="form-control" name="file">
+          <input type="file" class="form-control" name="file" required>
           </div>
           
 

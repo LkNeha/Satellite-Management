@@ -21,7 +21,7 @@ if(!isset($_SESSION['SATNAME'])){
                 $connection= mysqli_connect("localhost","root","");
                 $db= mysqli_select_db($connection,'satellitemanagement');
                 $name= $_SESSION['SATNAME']; 
-                $query="select * from scientist SC,satellite S,organisation O,rocket R ,conditions C,follows F where  SC.ORGID=O.ORGID and S.ORGID=O.ORGID and S.RID=R.RID and F.CONDID=C.CONDID and S.SATID=F.SATID and SATNAME like '$name'";                
+                $query="select * from scientist SC,satellite S,organisation O,rocket R ,conditions C,follows F,belongs B where SC.SID=S.SID and SC.SID=B.SID and B.ORGID=O.ORGID and S.ORGID=O.ORGID and S.RID=R.RID and F.CONDID=C.CONDID and S.SATID=F.SATID and SATNAME like '$name'";                
                  
                  $result=mysqli_query($connection, $query);
                  $num=mysqli_num_rows($result);

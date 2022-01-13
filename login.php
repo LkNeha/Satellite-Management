@@ -3,13 +3,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   include 'connect.php';
   $username=$_POST['username'];
   $passwd=$_POST['passwd'];
-//   $query="create view v_credential as select VUNAME,VPASSWD from `visitor`";
-//   mysqli_query($connection,$query);
-  $sql = "select * from `visitor` where VUNAME='$username' and VPASSWD='$passwd'";
+  $query="create view v_credentials as select VUNAME,VPASSWD from `visitor`";
+  mysqli_query($connection,$query);
+  $sql = "select * from `v_credentials` where VUNAME='$username' and VPASSWD='$passwd'";
   $result=mysqli_query($connection,$sql);
   if($result){
-      // $trigger="create trigger after_insert after insert on `visitor` for each row begin update `visitor` set new.count=1 where VUNAME='$username' end;";
-      // mysqli_query($connection,$trigger);
       $count="update `visitor`  set count =(count + 1)  where VUNAME='$username'";
       $query2 = mysqli_query($connection,$count);
       $num=mysqli_num_rows($result);

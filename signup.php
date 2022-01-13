@@ -2,7 +2,6 @@
 
 $user=0;
 $sucess=0;
-
 if($_SERVER['REQUEST_METHOD']=='POST'){
   include 'connect.php';
   $username=$_POST['username'];
@@ -20,13 +19,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   if($result){
     $num=mysqli_num_rows($result);
     if($num>0){
-      // echo '<script type="text/javascript">alert("Username already exists")</script>';
       $user=1;
   }
   else{
     $query = "insert into `visitor` (`VUNAME`,`VFNAME`,`VLNAME`,`VGENDER`,`VDOB`,`VDESIG`,`VEMAIL`,`VPHONE`,`VPASSWD`,`VCOUNTRY`) values ('$username','$fname','$lname','$gender','$dob','$desig','$email','$phone','$pswd','$country')";
     $result= mysqli_query($connection,$query);
     if($result){
+          $sql="update `visitor` set count=0 where VUNAME = '$username'";
+          mysqli_query($connection,$sql);
           $sucess=1;
     }
     else{
@@ -94,9 +94,7 @@ Registration Page
 if($user){
   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>Oh no sorry</strong> Username already exists. Choose a different one!
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  
 </div>';
 }
 
@@ -107,9 +105,7 @@ if($user){
 if($sucess){
 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 <strong>Woohooo</strong> Your signed in Successfully! Now go back to login page  
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
- <span aria-hidden="true">&times;</span>
-</button>
+
 </div>';
 }
 
@@ -130,42 +126,42 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <div class="row">  
               <div class="col-md-6">  
                 <div class="form-group">  
-         <input type="text" class="form-control" name="fname" placeholder="First name" required >  
+         <input type="text" class="form-control" name="fname" placeholder="First name" autocomplete="off" required >  
                 </div>  
               </div>  
               <div class="col-md-6">  
                 <div class="form-group">  
-                  <input type="text" name="lname" class="form-control" placeholder="Last name" required >  
+                  <input type="text" name="lname" class="form-control" placeholder="Last name" autocomplete="off" required >  
                 </div>  
               </div> 
               <div class="col-md-6">  
                 <div class="form-group">  
-                  <input type="text" name="username" class="form-control" placeholder="username" required >  
+                  <input type="text" name="username" class="form-control" placeholder="username" autocomplete="off" required >  
                 </div>  
               </div>  
               <div class="col-md-6">  
                 <div class="form-group">  
-               <input type="email" name="email" class="form-control" placeholder="Email" required >  
+               <input type="email" name="email" class="form-control" placeholder="Email" autocomplete="off" required >  
                 </div>  
               </div>  
               <div class="col-md-6">  
                 <div class="form-group">  
-                  <input type="text" class="form-control" name="designation" placeholder="Designation" required >  
+                  <input type="text" class="form-control" name="designation" placeholder="Designation" autocomplete="off" required >  
                 </div>  
               </div> 
               <div class="col-md-6">  
                 <div class="form-group">  
   
                   <div class="form-check form-check-inline">  
-                    <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>  
+                    <input class="form-check-input" type="radio" name="gender" id="male" value="Male" autocomplete="off" required>  
                     <label class="form-check-label" for="gender" > Male </label>  
                   </div>  
                   <div class="form-check form-check-inline">  
-                    <input class="form-check-input" type="radio" name="gender" id="female" value="Female" required>  
+                    <input class="form-check-input" type="radio" name="gender" id="female" value="Female" autocomplete="off" required>  
                     <label class="form-check-label" for="gender" > Female </label>  
                   </div> 
                   <div class="form-check form-check-inline">  
-                    <input class="form-check-input" type="radio" name="gender" id="other" value="Other" required>  
+                    <input class="form-check-input" type="radio" name="gender" id="other" value="Other" autocomplete="off" required>  
                     <label class="form-check-label" for="gender" > Other </label>  
                   </div> 
                 </div>  
@@ -173,24 +169,24 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
   
               <div class="col-md-6">  
                 <div class="form-group">  
-                  <input type="text" name="phone" class="form-control" placeholder="Phone number" required >  
+                  <input type="text" name="phone" class="form-control" placeholder="Phone number" autocomplete="off" required >  
                 </div>  
               </div>  
   
               <div class="col-md-6">  
                 <div class="form-group">  
-                  <input type="date" name="date" class="form-control" placeholder=""required>  
+                  <input type="date" name="date" class="form-control" placeholder="" autocomplete="off" required>  
                 </div>  
               </div>  
     <div class="col-md-6">  
                 <div class="form-group">  
-                  <input name="pswd" type="password" class="form-control" placeholder="Password" required >  
+                  <input name="pswd" type="password" class="form-control" placeholder="Password" autocomplete="off" required >  
                 </div>  
               </div>  
   
               <div class="col-md-6">  
                 <div class="form-group">  
-                  <input name=cpswd type="password" class="form-control" placeholder="Confirm Password" required>  
+                  <input name=cpswd type="password" class="form-control" placeholder="Confirm Password" autocomplete="off" required>  
                 </div>  
               </div>  
               <div class="col-md-12"> 
@@ -404,5 +400,3 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 $(".custom-select").chosen();
 </script>
 </html>
-
-

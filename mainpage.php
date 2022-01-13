@@ -47,7 +47,7 @@ if(!isset($_SESSION['VUNAME'])){
     </header>   
          <section>
              <h3>Welcome to  our DBMS Project </h3>
-             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla unde placeat voluptatem quas fugiat maiores a repudiandae animi harum libero, nihil veniam provident culpa doloremque enim esse eligendi! Totam hic maxime perspiciatis, recusandae velit cupiditate.</p>
+             <p>Hello  Welcome to our website where we provide you upto date Satellite information. You can enjoy satellite's information all across the space is brought together in a single platform giving you accurate information about the satellite, its owner, launch date, lifetime etc. In brief, the Satellite management system establishes a frictionless approach and eliminates all complexity. </p>
          </section>
           
          <section id="aboutus">
