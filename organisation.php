@@ -22,7 +22,7 @@
 }
 </style>
 <body>
-    <table border="5" class="table ">
+    <table border="10" class="table ">
         <tr>
             <th>Organisation ID</th>
             <th>Organisation Name</th>

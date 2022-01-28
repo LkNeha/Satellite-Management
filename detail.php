@@ -33,7 +33,7 @@
             <th>Satellite Name</th>
             <th>Satellite User</th>
             <th>Satellite Purpose</th>
-            <th>Organisation ID</th>
+            <!-- <th>Organisation ID</th> -->
             <th>Organisation Name</th>
             <th>Location</th>
             <th>Rocket ID</th>
@@ -59,7 +59,7 @@ if($total!=0){
         <td>".$final['SATNAME']."</td>
         <td>".$final['SATUSER']."</td>
         <td>".$final['SATPURPOSE']."</td>
-        <td>".$final['ORGID']."</td>
+        
         <td>".$final['ORGNAME']."</td>
         <td>".$final['LOCATION']."</td>
         <td>".$final['RID']."</td>

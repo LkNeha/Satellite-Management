@@ -1,25 +1,87 @@
-<!-- <?php
+<?php
 $sucess=0;
 $fail=0;
+$con=0;
+$sat=0;
+$error=0;
 if($_SERVER['REQUEST_METHOD']=='POST'){
+  include 'connect.php';
         $sid=$_POST['sid'];
         $satid=$_POST['satid'];
+        $condid=$_POST['condid'];
         $query="select * from `scientist` where SID='$sid'";
-        $result=mysql_query($connection,$query);
+        $result=mysqli_query($connection,$query);
         if($result){
-            $count=mysql_num_rows($result);
+            $count=mysqli_num_rows($result);
             if($count>0){
-
+              $satcheck="select * from `satellite` where SATID='$satid'";
+              $satreq=mysqli_query($connection,$satcheck);
+              if($satreq){
+                $satcount=mysqli_num_rows($satreq);
+                if($satcount>0){
+                  $check="select * from `conditions` where CONDID='$condid' ";
+                  $req=mysqli_query($connection,$check);
+                  if($req){
+                    $concount=mysqli_num_rows($req);
+                    if($concount>0){
+                      $query1="delete from `dropped` where SATID='$satid'";
+                      $result1=mysqli_query($connection,$query1);
+                      if($result1){
+                          $query2="delete from `follows` where CONDID='$condid' and SATID='$satid'";
+                          $result2=mysqli_query($connection,$query2);
+                          if($result2){
+                            $query3="delete from `conditions` where condid='$condid'";
+                            $result3=mysqli_query($connection,$query3);
+                            if($result3){
+                              $query4="delete from `satellite` where SATID='$satid'";
+                              $result4=mysqli_query($connection,$query4);
+                              if($result4){
+                                $query5="delete from `scientist` where SID='$sid'";
+                                $result5=mysqli_query($connection,$query5);
+                                if($result5){
+                                $sucess=1;
+                              }
+                              else{
+                                $error=1;
+                              }
+                            }
+                            else{
+                              $error=1;
+                            }
+                          }
+                          else{
+                            $error=1;
+                          }
+                        }
+                        else{
+                          $error=1;
+                        }
+                      }
+                      else{
+                        $error=1;
+                      }
+                    }
+                    else{
+                      $con=1;
+                    }
+                  }
+                }
+                else{
+                 $sat=1;
+                }
+              }
+            }
+            else{
+              $fail=1;
             }
         }
-
 }
 
 
-?> -->
+?>
 <!DOCTYPE html> 
 <head>  
-<title>  Update Page  </title>  
+<title>  Delete Page  </title>  
 <meta name="viewport" content="width=device-width, initial-scale=1">  
 <head>  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  
@@ -127,7 +189,7 @@ button {
 </head> 
  
 <body>  
-<!-- <?php
+<?php
 
 if($fail){
   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -137,17 +199,46 @@ if($fail){
 }
 
 ?>
+<?php
+
+if($con){
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong></strong> Cant Find the Condition ID
+  
+</div>';
+}
+
+?>
+<?php
+
+if($error){
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong></strong> Cant Delete due to some site issue! We will get back to your update..
+  
+</div>';
+}
+
+?>
+<?php
+
+if($sat){
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong></strong> Cant Find the Satellite ID
+  
+</div>';
+}
+?>
 
 <?php
 
 if($sucess){
 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-<strong></strong> Updated  Successfully!  
+<strong></strong> Deleted Successfully!  
 
 </div>';
 }
 
-?>  -->
+?>
 <section class="contact-from pt-4">  
   <div class="container">  
   <div class="row mt-5">  
@@ -155,10 +246,10 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <div class="form-wrapper">  
           <div class="row">  
             <div class="col-md-12">  
-              <h4> <b> Wanna Update !! </b> </h4>  
+              <h4> <b> Wanna Delete !! </b> </h4>  
             </div>  
           </div>  
-          <form action="upsci.php"   method="post"> 
+          <form action="delsci.php"  method="post"> 
             
             <div class="row">  
               <div class="col-md-6">  
@@ -171,7 +262,13 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 
               <div class="col-md-6">  
                 <div class="form-group">  
-         <input type="text" class="form-control" placeholder="Enter Satellite Id to delete"  autocomplete="off" name="column" required >  
+         <input type="text" class="form-control" placeholder="Enter Satellite Id to delete"  autocomplete="off" name="satid" required >  
+                </div>  
+              </div> 
+
+              <div class="col-md-6">  
+                <div class="form-group">  
+         <input type="text" class="form-control" placeholder="Enter Condition id of Satellite"  autocomplete="off" name="condid" required >  
                 </div>  
               </div> 
               <br><br><br>
@@ -179,7 +276,7 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
               <div class="col-md-6">  
                 <div class="form-group">  
                <!-- <input type="textarea" class="form-control" placeholder="Why Do you want to delete?"  name="old" autocomplete="off" required >   -->
-               <textarea id="subject" class="form-control" name="subject" placeholder="Why Do you want to delete?" style="height:90px; width:600px; padding:2px"></textarea>
+               <textarea id="subject" class="form-control" name="subject" placeholder="Why Do you want to delete?" style="height:90px; width:287px; padding:2px"></textarea>
 
                 </div>  
               </div>  

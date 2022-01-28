@@ -67,18 +67,21 @@ Registration Page
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
 <link rel="icon" href="images/nwicon.png" type="image/png">
 </head> 
+
 <script>
-    const togglePassword = document.querySelector('#togglePassword');
-  const password = document.querySelector('#id_password');
- 
-  togglePassword.addEventListener('click', function (e) {
-    // toggle the type attribute
-    const type = password.getAttribute('type') === 'password' ? 'text' : 'pswd';
-    password.setAttribute('type', type);
-    // toggle the eye slash icon
-    this.classList.toggle('fa-eye-slash');
-});
-</script> 
+  function toggle(){
+    var password=document.querySelector('[name=pswd]');
+    if(password.getAttribute('type')==='password'){
+      password.setAttribute('type','text');
+
+    }
+    else{
+      password.setAttribute('type','password');
+      
+    }
+
+  }
+</script>
 <body>
 <?php
 if($user){
@@ -90,7 +93,7 @@ if($user){
 <?php
 if($passw){
   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>Note </strong> Password must be at least 8 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.";
+  <strong>Note </strong> Password must be at least 8 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.
   </div>';
 }
 ?>
@@ -160,7 +163,7 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
   
               <div class="col-md-6">  
                 <div class="form-group">  
-                  <input type="tel" name="phone" class="form-control" placeholder="Phone number" autocomplete="off" onkeypress="return([0-9]{2}?-[0-9]{10})" required >  
+                  <input type="text" name="phone" class="form-control" placeholder="Phone number" autocomplete="off"  required >  
                 </div>  
               </div>  
   
@@ -171,8 +174,8 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
               </div>  
     <div class="col-md-6">  
                 <div class="form-group">  
-                  <input id="id_password" name="pswd" type="password" class="form-control" placeholder="Password" autocomplete="off" required="" >
-                  <i class="far fa-eye" id="togglePassword" style="margin-left: 270px; margin-top:-25px; cursor: pointer;"></i>
+                  <input id="password" name="pswd" type="password" class="form-control" placeholder="Password" autocomplete="off" required="" >
+                  <i class="far fa-eye" area-hidden="true" style="margin-left: 270px; margin-top:-25px; cursor: pointer;" onclick="toggle()"></i>
   
                 </div>  
               </div>  
@@ -185,7 +188,7 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
               <div class="col-md-12"> 
                 <label class="form-check-label" for="inlineRadio1" > Select country</label>  
                 <select name="countries" class="custom-select" id="FormControlSelect1" required> 
-                   <option >        </option>
+                   <option>        </option>
                   <option>Afghanistan </option>  
                   <option>Albania </option>  
                   <option>Algeria </option>  

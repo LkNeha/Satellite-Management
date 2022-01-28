@@ -40,7 +40,7 @@ if(!isset($_SESSION['VUNAME'])){
        </nav>
        <div class="right">
       <!-- right box for buttons  -->
-      <a href="/DBMS-Project/login.php"><button class="btn" onclick="alert('LOGGED OUT')">log out</button></a>
+      <a href="/DBMS-Project/login.php"><button class="btn" onclick="alert('Logged out Successfully!')">log out</button></a>
     
     </div>
        
@@ -67,7 +67,7 @@ if(!isset($_SESSION['VUNAME'])){
                
                <div class="back">
                  <a href="#" target="blank" class="icon">
-                   <i class="fab fa-instagram"></i>
+                   <i class="fab fa-github"></i>
                  </a>
                  <a href="https://www.linkedin.com/in/ritvik-s-shetty" target="blank" class="icon">
                    <!-- <i class="fab fa-linkedin-square"></i> -->
@@ -83,7 +83,7 @@ if(!isset($_SESSION['VUNAME'])){
             
                <div class="card1">
                <div class="front1">
-                 <img src="images/neha.jpeg" alt="">
+                 <img src="images/neha.jpg" alt="">
                    <div class="details">
                      <h2>Neha L K</h2>
                      <span>Student/Developer</span>
@@ -92,10 +92,10 @@ if(!isset($_SESSION['VUNAME'])){
               </div>
 
                <div class="back1">
-                 <a href="#" target="blank" class="icon1">
-                   <i class="fab fa-instagram"></i>
+                 <a href="https://github.com/LkNeha" target="blank" class="icon1">
+                   <i class="fab fa-github"></i>
                  </a>
-                 <a href="#" target="blank" class="icon">
+                 <a href="https://www.linkedin.com/in/neha-l-k-3120a2208/" target="blank" class="icon">
                    <!-- <i class="fab fa-linkedin-square"></i> -->
                    <i class="fa fa-linkedin-square"></i>
                  </a>
@@ -148,11 +148,13 @@ if(!isset($_SESSION['VUNAME'])){
             </div>
          </section>
 
+         
+
         <section id="contactus">
         <h2 >CONTACT US</h2>
         <h4>Team</h4>
-        <span>Neha L K: <a href="" style="color: blanchedalmond;">nehalk@gmail.com</a></span>
-        <span>Ritvik S Shetty: <a href="https://mail.google.com/" style="color: blanchedalmond;">ritviksshetty@gmail.com
+        <span>Neha L K: <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new" target="_blank" style="color: blanchedalmond;">lkneha123@gmail.com</a></span>
+        <span>Ritvik S Shetty: <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new" target="_blank" style="color: blanchedalmond;">ritviksshetty@gmail.com
       </a</span>
         </section> 
  

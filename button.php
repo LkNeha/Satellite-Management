@@ -14,7 +14,7 @@
     <li>  
       <a href="/DBMS-Project/detail.php"><button class="btn" style="--content: 'Get the list of Satellites here..';">
         <div class="left"></div>
-          Get the list of Satellites here..
+        Get the list of Satellites here..
         <div class="right"></div>
       </button></a></li>
       
