@@ -3,6 +3,7 @@ html{
 }
 body{
     background-color: black;
+    /* background: #34495e; */
     color: whitesmoke;
     margin: 0;
     padding: 0;
@@ -348,3 +349,4 @@ a:hover:after{
   .card1:hover .front1 {
     transform: rotateY(-180deg);
   }
+  

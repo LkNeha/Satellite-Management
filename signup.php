@@ -4,6 +4,7 @@ $sucess=0;
 $passw=0;
 if($_SERVER['REQUEST_METHOD']=='POST'){
   include 'connect.php';
+  $mailfrom='satellitemag001@gmail.com';
   $username=$_POST['username'];
   $fname=$_POST['fname'];
   $lname=$_POST['lname'];
@@ -31,7 +32,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       $user=1;
   }
   else{
-    $query = "insert into `visitor` (`VUNAME`,`VFNAME`,`VLNAME`,`VGENDER`,`VDOB`,`VDESIG`,`VEMAIL`,`VPHONE`,`VPASSWD`,`VCOUNTRY`,`num`) values ('$username','$fname','$lname','$gender','$dob','$desig','$email','$phone','$pswd','$country','')";
+    $query = "insert into `visitor` (`VUNAME`,`VFNAME`,`VLNAME`,`VGENDER`,`VDOB`,`VDESIG`,`VEMAIL`,`VPHONE`,`VPASSWD`,`VCOUNTRY`,`num`) values ('$username','$fname','$lname','$gender','$dob','$desig','$email','$phone','$pswd','$country','NULL')";
     $result= mysqli_query($connection,$query);
     if($result){
           // $sql="update `visitor` set count=0 where VUNAME = '$username'";
@@ -44,6 +45,17 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   }
  }
 }
+// $subject="Confirmation: Registration Successfull!";
+
+// $message="Dear" . $fname . $lname ."\n\n". "Thank you for registering ! Keep Spacifying!";
+
+// $headers="From:". $mailfrom;
+
+// mail($email,$subject,$message,$headers);
+
+// var_dump($resultmail);
+
+
   
 }
 ?>
@@ -187,8 +199,7 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
               </div>  
               <div class="col-md-12"> 
                 <label class="form-check-label" for="inlineRadio1" > Select country</label>  
-                <select name="countries" class="custom-select" id="FormControlSelect1" required> 
-                   <option>        </option>
+                <select name="countries" class="custom-select" placeholder="select your country" id="FormControlSelect1" required> 
                   <option>Afghanistan </option>  
                   <option>Albania </option>  
                   <option>Algeria </option>  

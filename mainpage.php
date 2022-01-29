@@ -19,6 +19,10 @@ if(!isset($_SESSION['VUNAME'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
+  
+      
+
+
 <body>
   <div >
   <p class="user" style="font-family:'Poppins',sans-serif" class="display">
@@ -46,12 +50,14 @@ if(!isset($_SESSION['VUNAME'])){
        
     </header>   
          <section>
+           <br><br><br>
              <h3>Welcome to  our DBMS Project </h3>
          </section>
           
          <section id="aboutus">
-           <br><br><br><br>
+           <br><br><br><br><br>
           <h2>Team</h2>
+          
            <div class="container">
              
              <div class="card">
@@ -147,6 +153,7 @@ if(!isset($_SESSION['VUNAME'])){
             
             </div>
          </section>
+         
 
          
 

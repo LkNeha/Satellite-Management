@@ -33,14 +33,21 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                             $query3="delete from `conditions` where condid='$condid'";
                             $result3=mysqli_query($connection,$query3);
                             if($result3){
-                              $query4="delete from `satellite` where SATID='$satid'";
+                              $query4="delete from `uploads` where SATID='$satid' and SID='$sid'";
                               $result4=mysqli_query($connection,$query4);
                               if($result4){
                                 $query5="delete from `scientist` where SID='$sid'";
                                 $result5=mysqli_query($connection,$query5);
                                 if($result5){
-                                $sucess=1;
-                              }
+                                  $query6="delete from `satellite` where SATID='$satid'";
+                                  $result6=mysqli_query($connection,$query6);
+                                  if($result6){
+                                    $sucess=1;
+                                  }
+                                  else{
+                                    $error=1;
+                                  }
+                                }
                               else{
                                 $error=1;
                               }

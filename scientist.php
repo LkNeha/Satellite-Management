@@ -50,7 +50,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           }
           else{
            
-            $query1="insert into `satellite` (`SATID`,`SATNAME`,`SATUSER`,`SATPURPOSE`,`DATE_OF_LAUNCH`,`LIFETIME`,`SATIMAGE`,`RID`,`ORGID`,`SID`) values ('$satid','$satname','$satuser','$satpurpose','$launchdate','$satlife','','$rid','$orgid','$sid')";
+            $query1="insert into `satellite` (`SATID`,`SATNAME`,`SATUSER`,`SATPURPOSE`,`DATE_OF_LAUNCH`,`LIFETIME`,`SATIMAGE`,`RID`,`ORGID`) values ('$satid','$satname','$satuser','$satpurpose','$launchdate','$satlife','','$rid','$orgid')";
             $result1=mysqli_query($connection,$query1);
           if($result1){
             $query2="insert into `conditions`(`CONDID`,`CLASS_OF_ORBIT`,`ORBIT_TYPE`,`LONGITUDE`,`APOGEE`,`PERIGEE`,`ECCENTRICITY`,`INCLINATION`,`LAUNCHMASS`,`PERIOD`,`POWER`) values ('$conid','$orbit','$type','$longi','$apogee','$perigee','$eccen','$incli','$launchmass','$launchtime','$power')";
@@ -62,28 +62,48 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 $query4="insert into `dropped` (`SATID`,`RID`) values ('$satid','$rid')";
                 $result4=mysqli_query($connection,$query4);
                 if($result4){
-                  $success=1;
+                  $query5="insert into `uploads` (`SID`,`SATID`) values ('$sid','$satid')";
+                  $result5=mysqli_query($connection,$query5);
+                  if($result5){
+                    $success=1;
+
+                  }
+                  else{
+                    $fail=1;
+                    // echo '<script type="text/javascript">alert("in uploads")</script>';
+
+                  }
                 }
                 else{
                   $fail=1;
+                  // echo '<script type="text/javascript">alert("in dropped")</script>';
+
                 }
               }
               else{
-                  $fail=1;        
+                  $fail=1;  
+                  // echo '<script type="text/javascript">alert("in follows")</script>';
+      
               }
             }
             else{
                 $fail=1;
+                echo '<script type="text/javascript">alert("in condition")</script>';
+
             }
           }
           else{
               $fail=1;  
+              // echo '<script type="text/javascript">alert("in satellite")</script>';
+
           }
           }
         }
       }
       else{
            $fail=1;
+          // echo '<script type="text/javascript">alert("in scientist")</script>';
+
       }
     }
   }else{
