@@ -10,7 +10,7 @@ if(!isset($_SESSION['VUNAME'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <title>Main</title>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="mainpage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
@@ -146,7 +146,7 @@ if(!isset($_SESSION['VUNAME'])){
                     <img src="images/login3.jpg" alt="">
                   </div>
                   <p style="color: black;"> Any New upcoming on board? Lets have a look at em.. </p>
-                  <a href="/DBMS-Project/new.php"  rel="noopener noreferrer" target="_parent"><button class="btn1">Letss go</button></a>
+                  <a href="/DBMS-Project/nbutton.php"  rel="noopener noreferrer" target="_parent"><button class="btn1">Letss go</button></a>
 
                 </div>
                 

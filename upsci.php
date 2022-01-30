@@ -85,16 +85,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
               $res1="update `satellite` set `LIFETIME`='$new' where `satellite`.`SATID`='$tableid' and `satellite`.`LIFETIME`='$old'";
               mysqli_query($connection, $res1);
             }
-            // else{
-            //   echo '<script type="text/javascript">alert("Error occured In entered values");</script>';
-            // }
           }
-          // echo '<script type="text/javascript">alert("Updated Successfully");</script>';
-          $sucess=1;
-
-       }
-       else{
-        // echo '<script type="text/javascript">alert("Invalid SID")</script>';
+        $sucess=1;
+      }
+      else{
         $fail=1;
       }
     }
@@ -103,7 +97,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 <!DOCTYPE html> 
 <head>  
-<title>  Update Page  </title>  
+<title>  Update </title>  
 <meta name="viewport" content="width=device-width, initial-scale=1">  
 <head>  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  

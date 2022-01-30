@@ -3,6 +3,9 @@
  $fail=0;
  $rock=0;
  $org=0;
+ $conderror=0;
+ $saterror=0;
+ $scerror=0;
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
   include 'connect.php';
@@ -38,76 +41,119 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       $org=1;
     }
     else{
-      $query="insert into `scientist` (`SID`,`SNAME`,`SEMAIL`,`ORGID`) values ('$sid','$sname','$semail','$orgid')";
-      $result=mysqli_query($connection,$query);
-      if($result){
-        $sql1="select * from `rocket` where RID='$rid'";
-        $output=mysqli_query($connection,$sql1);
-        if($output){
-          $count=mysqli_num_rows($output);
-          if($count<=0){
-             $rock=1;
-          }
-          else{
-           
-            $query1="insert into `satellite` (`SATID`,`SATNAME`,`SATUSER`,`SATPURPOSE`,`DATE_OF_LAUNCH`,`LIFETIME`,`SATIMAGE`,`RID`,`ORGID`) values ('$satid','$satname','$satuser','$satpurpose','$launchdate','$satlife','','$rid','$orgid')";
-            $result1=mysqli_query($connection,$query1);
-          if($result1){
-            $query2="insert into `conditions`(`CONDID`,`CLASS_OF_ORBIT`,`ORBIT_TYPE`,`LONGITUDE`,`APOGEE`,`PERIGEE`,`ECCENTRICITY`,`INCLINATION`,`LAUNCHMASS`,`PERIOD`,`POWER`) values ('$conid','$orbit','$type','$longi','$apogee','$perigee','$eccen','$incli','$launchmass','$launchtime','$power')";
-            $result2=mysqli_query($connection,$query2);
-            if($result2){
-              $query3="insert into `follows`(`SATID`,`CONDID`) values ('$satid','$conid')";
-              $result3=mysqli_query($connection,$query3);
-              if($result3){
-                $query4="insert into `dropped` (`SATID`,`RID`) values ('$satid','$rid')";
-                $result4=mysqli_query($connection,$query4);
-                if($result4){
-                  $query5="insert into `uploads` (`SID`,`SATID`) values ('$sid','$satid')";
-                  $result5=mysqli_query($connection,$query5);
-                  if($result5){
-                    $success=1;
-
+      $sql4="select * from `scientist` where SID = '$sid'";
+      $output4=mysqli_query($connection,$sql4);
+      if($output4){
+        $sccount=mysqli_num_rows($output4);
+        if($sccount>0){
+          $scerror=1;
+        }
+        else{
+          $query="insert into `scientist` (`SID`,`SNAME`,`SEMAIL`,`ORGID`) values ('$sid','$sname','$semail','$orgid')";
+          $result=mysqli_query($connection,$query);
+          if($result){
+            $sql1="select * from `rocket` where RID='$rid'";
+            $output=mysqli_query($connection,$sql1);
+            if($output){
+              $count=mysqli_num_rows($output);
+              if($count<=0){
+                $del1="delete from `scientist` where SID='$sid'";
+                $final1=mysqli_query($connection,$del1);
+                $rock=1;
+              }
+              else{
+                $sql3="select * from `satellite` where SATID='$satid'";
+                $output3=mysqli_query($connection,$sql3);
+                if($output3){
+                  $countsat=mysqli_num_rows($output3);
+                  if($countsat>0){
+                    $del2="delete from `scientist` where SID='$sid'";
+                    $final2=mysqli_query($connection,$del2);
+                    $saterror=1;
                   }
                   else{
-                    $fail=1;
-                    // echo '<script type="text/javascript">alert("in uploads")</script>';
-
+                    $query1="insert into `satellite` (`SATID`,`SATNAME`,`SATUSER`,`SATPURPOSE`,`DATE_OF_LAUNCH`,`LIFETIME`,`SATIMAGE`,`RID`,`ORGID`) values ('$satid','$satname','$satuser','$satpurpose','$launchdate','$satlife','','$rid','$orgid')";
+                    $result1=mysqli_query($connection,$query1);
+                    if($result1){
+                      $sql2="select * from `conditions` where CONDID='$conid'";
+                      $output1=mysqli_query($connection,$sql2);
+                      if($output1){
+                        $concount=mysqli_num_rows($output1);
+                        if($concount>0){
+                          $del3="delete from `scientist` where SID='$sid'";
+                          $final3=mysqli_query($connection,$del3);
+                          $del4="delete from `satellite` where SATID='$satid'";
+                          $final4=mysqli_query($connection,$del4);
+                          $conderror=1;
+                        }
+                        else{
+                          $query2="insert into `conditions`(`CONDID`,`CLASS_OF_ORBIT`,`ORBIT_TYPE`,`LONGITUDE`,`APOGEE`,`PERIGEE`,`ECCENTRICITY`,`INCLINATION`,`LAUNCHMASS`,`PERIOD`,`POWER`) values ('$conid','$orbit','$type','$longi','$apogee','$perigee','$eccen','$incli','$launchmass','$launchtime','$power')";
+                          $result2=mysqli_query($connection,$query2);
+                          if($result2){
+                            $query3="insert into `follows`(`SATID`,`CONDID`) values ('$satid','$conid')";
+                            $result3=mysqli_query($connection,$query3);
+                            if($result3){
+                              $query4="insert into `dropped` (`SATID`,`RID`) values ('$satid','$rid')";
+                              $result4=mysqli_query($connection,$query4);
+                              if($result4){
+                                $query5="insert into `uploads` (`SID`,`SATID`) values ('$sid','$satid')";
+                                $result5=mysqli_query($connection,$query5);
+                                if($result5){
+                                  $success=1;
+                                }
+                                else{
+                                  $fail=1;
+                                  // echo '<script type="text/javascript">alert("in uploads")</script>';
+                                }
+                              }
+                              else{
+                                $fail=1;
+                                // echo '<script type="text/javascript">alert("in dropped")</script>';
+                              }
+                            }
+                            else{
+                              $fail=1;  
+                              // echo '<script type="text/javascript">alert("in follows")</script>';
+                            }
+                          }
+                          else{
+                            $fail=1;
+                            // echo '<script type="text/javascript">alert("in condition")</script>';
+                          }
+                        }
+                      }
+                      else{
+                        $fail=1;
+                      }
+                    }
+                    else{
+                      $fail=1;  
+                      // echo '<script type="text/javascript">alert("in satellite")</script>';
+                    }
                   }
                 }
                 else{
                   $fail=1;
-                  // echo '<script type="text/javascript">alert("in dropped")</script>';
-
                 }
-              }
-              else{
-                  $fail=1;  
-                  // echo '<script type="text/javascript">alert("in follows")</script>';
-      
               }
             }
             else{
-                $fail=1;
-                echo '<script type="text/javascript">alert("in condition")</script>';
-
+              $fail=1;
             }
           }
           else{
-              $fail=1;  
-              // echo '<script type="text/javascript">alert("in satellite")</script>';
-
-          }
+            $fail=1;
+            // echo '<script type="text/javascript">alert("in scientist")</script>';
           }
         }
       }
       else{
-           $fail=1;
-          // echo '<script type="text/javascript">alert("in scientist")</script>';
-
+        $fail=1;
       }
     }
-  }else{
-      $fail=1;
+  }
+  else{
+    $fail=1;
   }
 }
 ?> 
@@ -120,16 +166,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     <title>Scientist Form</title>
     <link rel="stylesheet" href="scientist.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-            <link rel="icon" href="images/nwicon.png" type="image/png">
-            <style>
-              body {  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" href="images/nwicon.png" type="image/png">
+    <style>
+  body {  
     background-image: url('images/nightsky.jpg');
     color: #f8f2f8;  
     font-family: "Roboto", Arial, Helvetica, sans-serif;  
@@ -213,8 +258,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       background-color: #3494e6;  
       }  
 </style>
-            
-             
 </head>
 <body>
 <?php
@@ -231,7 +274,7 @@ if($fail){
 
 if($rock){
   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>Ayoo</strong> Wrong Rocket ID
+  <strong></strong> Wrong Rocket ID
   
 </div>';
 }
@@ -241,7 +284,37 @@ if($rock){
 
 if($org){
   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>Ayoo</strong> Wrong Organization ID
+  <strong></strong> Wrong Organization ID
+  
+</div>';
+}
+
+?>
+<?php
+
+if($conderror){
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong></strong> Condition ID already exists
+  
+</div>';
+}
+
+?>
+<?php
+
+if($saterror){
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong></strong> Satellite ID already exists
+  
+</div>';
+}
+
+?>
+<?php
+
+if($scerror){
+  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong></strong> Scientist ID already exists
   
 </div>';
 }
@@ -370,7 +443,7 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 
          
          <label for="Position">Longitude</label>
-         <input type="text" id="pos" name="longi" placeholder="Enter the longitde.." autocomplete="off" required>
+         <input type="text" id="pos" name="longi" placeholder="Enter the longitude.." autocomplete="off" required>
 
          <label for="Position">Apogee</label>
          <input type="text" id="pos" name="apogee" placeholder="Enter apogee values" autocomplete="off" required>
@@ -393,10 +466,12 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
          
          <label for="Position">Power</label>
          <input type="text" id="pos" name="power" placeholder="Enter the power.." autocomplete="off" required>
-
+        
+         <label for="Position">Period</label>
+         <input type="text" id="pos" name="launchtime" placeholder="Enter the period.." autocomplete="off" required>
          
          <label for="Position">Launch Time</label>
-         <input type="time" id="pos" name="launchtime" placeholder="Enter the launch time.." autocomplete="off" required>
+         <input type="time" id="pos" name="Period" placeholder="Enter the launch time.." autocomplete="off" required>
 
 
          <br>

@@ -25,26 +25,26 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   }
   else{
     $sql ="select * from `visitor` where VUNAME='$username'";
-  $result=mysqli_query($connection,$sql);
-  if($result){
-    $num=mysqli_num_rows($result);
-    if($num>0){
-      $user=1;
-  }
-  else{
-    $query = "insert into `visitor` (`VUNAME`,`VFNAME`,`VLNAME`,`VGENDER`,`VDOB`,`VDESIG`,`VEMAIL`,`VPHONE`,`VPASSWD`,`VCOUNTRY`,`num`) values ('$username','$fname','$lname','$gender','$dob','$desig','$email','$phone','$pswd','$country','NULL')";
-    $result= mysqli_query($connection,$query);
+    $result=mysqli_query($connection,$sql);
     if($result){
+      $num=mysqli_num_rows($result);
+      if($num>0){
+        $user=1;
+      }
+      else{
+        $query = "insert into `visitor` (`VUNAME`,`VFNAME`,`VLNAME`,`VGENDER`,`VDOB`,`VDESIG`,`VEMAIL`,`VPHONE`,`VPASSWD`,`VCOUNTRY`,`num`) values ('$username','$fname','$lname','$gender','$dob','$desig','$email','$phone','$pswd','$country','NULL')";
+        $result= mysqli_query($connection,$query);
+        if($result){
           // $sql="update `visitor` set count=0 where VUNAME = '$username'";
           // mysqli_query($connection,$sql);
           $sucess=1;
-    }
-    else{
-      echo '<script type="text/javascript">alert("Data  not  Inserted")</script>';
+        }
+        else{
+          echo '<script type="text/javascript">alert("Data  not  Inserted")</script>';
+        }
+      }
     }
   }
- }
-}
 // $subject="Confirmation: Registration Successfull!";
 
 // $message="Dear" . $fname . $lname ."\n\n". "Thank you for registering ! Keep Spacifying!";
@@ -54,17 +54,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 // mail($email,$subject,$message,$headers);
 
 // var_dump($resultmail);
-
-
-  
 }
 ?>
-
 <! DOCTYPE html>  
 <html>  
 <head>  
 <title>  
-Registration Page  
+Registration Form 
 </title>  
 <meta name="viewport" content="width=device-width, initial-scale=1">  
 <head>  
