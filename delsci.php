@@ -4,12 +4,13 @@ $fail=0;
 $con=0;
 $sat=0;
 $error=0;
+$invalid=0;
 if($_SERVER['REQUEST_METHOD']=='POST'){
   include 'connect.php';
         $sid=$_POST['sid'];
         $satid=$_POST['satid'];
         $condid=$_POST['condid'];
-        $query="select * from `scientist` where SID='$sid'";
+        $query="select * from `scientist` SC, `satellite` S, `conditions` C , `uploads` U, `follows` F where SC.SID=U.SID and S.SATID=U.SATID and S.SATID=F.SATID and F.CONDID=C.CONID and  SID='$sid'";
         $result=mysqli_query($connection,$query);
         if($result){
             $count=mysqli_num_rows($result);
@@ -81,6 +82,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             else{
               $fail=1;
             }
+        }else{
+          $invalid=1;
         }
 }
 
@@ -241,6 +244,16 @@ if($sat){
 if($sucess){
 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 <strong></strong> Deleted Successfully!  
+
+</div>';
+}
+
+?>
+<?php
+
+if($invalid){
+echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<strong>Mismatched ID!</strong> Make sure you Delete your Satellite!  
 
 </div>';
 }

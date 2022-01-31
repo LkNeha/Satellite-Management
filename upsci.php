@@ -1,6 +1,9 @@
 <?php
 $fail=0;
 $sucess=0;
+$invalid=0;
+$condid=0;
+$satid=0;
  
 if($_SERVER['REQUEST_METHOD']=='POST'){
     // $connection= mysqli_connect("localhost","root","");
@@ -12,86 +15,176 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $new=$_POST['new'];
     $tableid=$_POST['tableid'];
     $table=$_POST['table'];
-    $sql="select * from `scientist` where SID='$sid'";               
+    $sql="select * from `scientist` SC, `satellite` S, `conditions` C , `uploads` U, `follows` F where SC.SID=U.SID and S.SATID=U.SATID and S.SATID=F.SATID and F.CONDID=C.CONDID and  SC.SID='$sid' ";               
     $result=mysqli_query($connection, $sql);
     if($result){
       $num=mysqli_num_rows($result);
       if($num>0){
-            if($table='conditions'){
-              if($param='APOGEE'){
-                $query="update `conditions` set APOGEE='$new' where CONDID='$tableid' and APOGEE='$old' ";
-              mysqli_query($connection, $query);
+            if($table=='conditions'){
+              $sql1="select * from `scientist` SC, `satellite` S, `conditions` C , `uploads` U, `follows` F  where SC.SID=U.SID and S.SATID=U.SATID and S.SATID=F.SATID and F.CONDID=C.CONDID and  SC.SID='$sid' and C.CONDID='$tableid'";
+              $result1=mysqli_query($connection, $sql1);
+              if($result1){
+                $count=mysqli_num_rows($result1);
+                if($count>0){
+                  if($param='APOGEE'){
+                    $query="update `conditions` set APOGEE='$new' where CONDID='$tableid' and APOGEE='$old' ";
+                    $fin0=mysqli_query($connection, $query);
+                    if($fin0){
+                      $sucess=1;
+                    }
+    
+                  }
+                  if($param='PERIGEE'){
+                    $query="update `conditions` set PERIGEE='$new' where CONDID='$tableid' and PERIGEE='$old' ";
+                    $fin0=mysqli_query($connection, $query);
+                    if($fin0){
+                      $sucess=1;
+                    }
+    
+                  }
+                  if($param='CLASS OF ORBIT'||$param='class of orbit'||$param='Class of orbit'){
+                    $query="update `conditions` set CLASS_OF_ORBIT='$new' where CONDID='$tableid' and CLASS_OF_ORBIT='$old' ";
+                  $fin0=mysqli_query($connection, $query);
+                  if($fin0){
+                    $sucess=1;
+                  }
+    
+                  }
+                  if($param='ORBIT TYPE'||$param='orbit type'||$param='Orbit type'){
+                    $query="update `conditions` set ORBIT_TYPE='$new' where CONDID='$tableid' and ORBIT_TYPE='$old' ";
+                  $fin0=mysqli_query($connection, $query);
+                  if($fin0){
+                    $sucess=1;
+                  }
+    
+                  }
+                  if($param='LONGITUDE'||$param='longitude'||$param='Longitude'){
+                    $query="update `conditions` set LONGITUDE='$new' where CONDID='$tableid' and LONGITUDE='$old' ";
+                  $fin0=mysqli_query($connection, $query);
+                  if($fin0){
+                    $sucess=1;
+                  }
+    
+                  }
+                  if($param='ECCENTRICITY'||$param='eccentricity'||$param='Eccentricity'){
+                    $query="update `conditions` set ECCENTRICITY='$new' where CONDID='$tableid' and ECCENTRICITY='$old'";
+                  $fin0=mysqli_query($connection, $query);
+                  if($fin0){
+                    $sucess=1;
+                  }
+    
+                  }
+                  if($param='INCLINATION'||$param='inclination'||$param='Inclination'){
+                    $query="update `conditions` set INCLINATION='$new' where CONDID='$tableid'and INCLINATION='$old'";
+                  $fin0=mysqli_query($connection, $query);
+                  if($fin0){
+                    $sucess=1;
+                  }
+    
+                  }
+                  if($param='LAUNCH MASS'||$param='launch mass'||$param='Launch mass'){
+                    $query="update `conditions` set LAUNCHMASS='$new' where CONDID='$tableid' and LAUNCHMASS='$old' ";
+                  $fin0=mysqli_query($connection, $query);
+                  if($fin0){
+                    $sucess=1;
+                  }
+    
+                  }
+                  if($param='PERIOD'||$param='period'||$param='Period'){
+                    $query="update `conditions` set PERIOD='$new' where CONDID='$tableid' and PERIOD='$old'";
+                  $fin0=mysqli_query($connection, $query);
+                  if($fin0){
+                    $sucess=1;
+                  }
+    
+                  }
+                  else{
+                    $condid=1;
+                  }
+                }
+                else{
+                   $invalid=1;
+                  // echo '<script type="text/javascript">alert("UNSER CON")</script>';
 
+                }
               }
-              if($param='PERIGEE'){
-                $query="update `conditions` set PERIGEE='$new' where CONDID='$tableid' and PERIGEE='$old' ";
-                mysqli_query($connection, $query);
-
-              }
-              if($param='CLASS OF ORBIT'||$param='class of orbit'||$param='Class of orbit'){
-                $query="update `conditions` set CLASS_OF_ORBIT='$new' where CONDID='$tableid' and CLASS_OF_ORBIT='$old' ";
-              mysqli_query($connection, $query);
-
-              }
-              if($param='ORBIT TYPE'||$param='orbit type'||$param='Orbit type'){
-                $query="update `conditions` set ORBIT_TYPE='$new' where CONDID='$tableid' and ORBIT_TYPE='$old' ";
-              mysqli_query($connection, $query);
-
-              }
-              if($param='LONGITUDE'||$param='longitude'||$param='Longitude'){
-                $query="update `conditions` set LONGITUDE='$new' where CONDID='$tableid' and LONGITUDE='$old' ";
-              mysqli_query($connection, $query);
-
-              }
-              if($param='ECCENTRICITY'||$param='eccentricity'||$param='Eccentricity'){
-                $query="update `conditions` set ECCENTRICITY='$new' where CONDID='$tableid' and ECCENTRICITY='$old'";
-              mysqli_query($connection, $query);
-
-              }
-              if($param='INCLINATION'||$param='inclination'||$param='Inclination'){
-                $query="update `conditions` set INCLINATION='$new' where CONDID='$tableid'and INCLINATION='$old'";
-              mysqli_query($connection, $query);
-
-              }
-              if($param='LAUNCH MASS'||$param='launch mass'||$param='Launch mass'){
-                $query="update `conditions` set LAUNCHMASS='$new' where CONDID='$tableid' and LAUNCHMASS='$old' ";
-              mysqli_query($connection, $query);
-
-              }
-              if($param='PERIOD'||$param='period'||$param='Period'){
-                $query="update `conditions` set PERIOD='$new' where CONDID='$tableid' and PERIOD='$old'";
-              mysqli_query($connection, $query);
-
-              }
+              // else{
+              //   $invalid=1;
+              // }
+              
           }
-          if($table='satellite'){
-            if($param='NAME'){
-              $res0="update `satellite` set `SATNAME`='$new' where `satellite`.`SATID`='$tableid' and `satellite`.`SATNAME`='$old'";
-              mysqli_query($connection, $res0);
+          if($table=='satellite'){
+            $sql1="select * from `scientist` SC, `satellite` S, `conditions` C , `uploads` U, `follows` F  where SC.SID=U.SID and S.SATID=U.SATID and S.SATID=F.SATID and F.CONDID=C.CONDID and  SC.SID='$sid' and S.SATID='$tableid'";
+            $result1=mysqli_query($connection, $sql1);
+            if($result1){
+              $count=mysqli_num_rows($result1);
+              if($count>0){
+                if($param='NAME' || $param='Name' || $param ='name'){
+                  $res0="update `satellite` set `SATNAME`='$new' where `satellite`.`SATID`='$tableid' and `satellite`.`SATNAME`='$old'";
+                  $fin0=mysqli_query($connection, $res0);
+                  if($fin0){
+                    $sucess=1;
+                  }
+
+                }
+                if ($param='USER' || $param='user' || $param='User') {
+                  $res1="update `satellite` set `SATUSER`='$new' where `satellite`.`SATID`='$tableid' and `satellite`.`SATUSER`='$old'";
+                  $fin0=mysqli_query($connection, $res1);
+                  if($fin0){
+                    $sucess=1;
+                  }
+
+                }
+                if ($param='PURPOSE' || $param='purpose'||$param='Purpose') {
+                  $res1="update `satellite` set `SATPURPOSE`='$new' where `satellite`.`SATID`='$tableid' and `satellite`.`SATPURPOSE`='$old'";
+                  $fin0=mysqli_query($connection, $res1);
+                  if($fin0){
+                    $sucess=1;
+                  }
+
+                }
+                if ($param='DATE OF LAUNCH' || $param='date of launch' || $param='Date of launch'|| $param='date') {
+                  $res1="update `satellite` set `DATE_OF_LAUNCH`='$new' where `satellite`.`SATID`='$tableid' and `satellite`.`DATE_OF_LAUNCH`='$old'";
+                  $fin0=mysqli_query($connection, $res1);
+                  if($fin0){
+                    $sucess=1;
+                  }
+
+                }
+                if ($param='LIFE TIME' || $param='life time' || $param ='Life time') {
+                  $res1="update `satellite` set `LIFETIME`='$new' where `satellite`.`SATID`='$tableid' and `satellite`.`LIFETIME`='$old'";
+                  $fin0=mysqli_query($connection, $res1);
+                  if($fin0){
+                    $sucess=1;
+                  }
+
+                }
+                else{
+                  $satid=1;
+                }
+              }
+              else{
+                $invalid=1;
+                // echo '<script type="text/javascript">alert("UNDER SAT")</script>';
+
+              }
+              
+              
             }
-            if ($param='USER') {
-              $res1="update `satellite` set `SATUSER`='$new' where `satellite`.`SATID`='$tableid' and `satellite`.`SATUSER`='$old'";
-              mysqli_query($connection, $res1);
+            else{
+              $fail=1;
             }
-            if ($param='PURPOSE') {
-              $res1="update `satellite` set `SATPURPOSE`='$new' where `satellite`.`SATID`='$tableid' and `satellite`.`SATPURPOSE`='$old'";
-              mysqli_query($connection, $res1);
-            }
-            if ($param='DATE OF LAUNCH') {
-              $res1="update `satellite` set `DATE_OF_LAUNCH`='$new' where `satellite`.`SATID`='$tableid' and `satellite`.`DATE_OF_LAUNCH`='$old'";
-              mysqli_query($connection, $res1);
-            }
-            if ($param='LIFE TIME') {
-              $res1="update `satellite` set `LIFETIME`='$new' where `satellite`.`SATID`='$tableid' and `satellite`.`LIFETIME`='$old'";
-              mysqli_query($connection, $res1);
-            }
-          }
-        $sucess=1;
+            
+           }
+           
       }
       else{
         $fail=1;
       }
     }
+   // else{
+    //   $invalid=1;
+    // }
 }
 ?>
 
@@ -221,6 +314,36 @@ if($fail){
 if($sucess){
 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 <strong></strong> Updated  Successfully!  
+
+</div>';
+}
+
+?> 
+<?php
+
+if($invalid){
+echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<strong>Mismatched ID!</strong> Make sure you Update your Satellite!  
+
+</div>';
+}
+
+?> 
+<?php
+
+if($condid){
+echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<strong></strong> Invalid CON parameter!  
+
+</div>';
+}
+
+?> 
+<?php
+
+if($satid){
+echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<strong></strong> Invalid SAT parameter!  
 
 </div>';
 }
