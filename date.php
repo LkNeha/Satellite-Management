@@ -38,9 +38,8 @@ $query="select * from `satellite` where DATE_OF_LAUNCH BETWEEN '$fdate' and '$td
 $result=mysqli_query($connection,$query);
 $total=mysqli_num_rows($result);
 if($total!=0){
-    while(($final=mysqli_fetch_assoc($result))){
-        ?>
-         <table border="10" class="table ">
+    ?>
+     <table border="10" class="table ">
         <tr>
             <th>Satellite ID</th>
             <th>Satellite Name</th>
@@ -49,6 +48,10 @@ if($total!=0){
             <th>Date of launch</th>
             <th>Life time</th>
         </tr>
+    <?php
+    while(($final=mysqli_fetch_assoc($result))){
+        ?>
+        
         <?php
         echo "<tr>
         <td>".$final['SATID']."</td>

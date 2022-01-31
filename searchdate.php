@@ -129,15 +129,16 @@ button {
         <div class="form-wrapper">  
           <div class="row">  
             <div class="col-md-12">  
-              <h4> <b> Search by Date !! </b> </h4>  
+              <h4> <b> Enter Date range !! </b> </h4>  
             </div>  
           </div>  
           <form action="searchdate.php"  method="post"> 
             
             <div class="row">  
               <div class="col-md-6">  
-                <div class="form-group">  
-         <input type="text" class="form-control" placeholder="yyyy-mm-dd"  name="fdate" autocomplete="off" required >  
+                <div class="form-group">
+         <!-- <label for="">Enter from date:</label>            -->
+         <input type="text" class="form-control" placeholder="From date 'yyyy-mm-dd'"  name="fdate" autocomplete="off" required >  
                 </div>  
               </div>  
  
@@ -145,7 +146,8 @@ button {
 
               <div class="col-md-6">  
                 <div class="form-group">  
-         <input type="text" class="form-control" placeholder="yyyy-mm-dd"  autocomplete="off" name="tdate" required >  
+          <!-- <label for="">Enter to date:</label> -->
+         <input type="text" class="form-control" placeholder="To date 'yyyy-mm-dd'"  autocomplete="off" name="tdate" required >  
                 </div>  
               </div> 
 

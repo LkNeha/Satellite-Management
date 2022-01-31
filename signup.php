@@ -45,15 +45,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       }
     }
   }
-// $subject="Confirmation: Registration Successfull!";
+$subject="Confirmation: Registration Successfull!";
 
-// $message="Dear" . $fname . $lname ."\n\n". "Thank you for registering ! Keep Spacifying!";
+$message="Dear" . $fname . $lname ."\n\n". "Thank you for registering ! Keep Spacifying!";
 
-// $headers="From:". $mailfrom;
+$headers="From:". $mailfrom;
 
-// mail($email,$subject,$message,$headers);
+$resultmail=mail($email,$subject,$message,$headers);
 
-// var_dump($resultmail);
+var_dump($resultmail);
 }
 ?>
 <! DOCTYPE html>  
