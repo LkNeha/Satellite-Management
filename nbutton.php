@@ -12,9 +12,9 @@
 <body>
   <ul>
     <li>  
-      <a href="/DBMS-Project/new.php"><button class="btn" style="--content: 'Check on new 2022 Lanuches..';">
+      <a href="/DBMS-Project/newlaunch.php"><button class="btn" style="--content: 'Check on new 2022 Launches..';">
         <div class="left"></div>
-        Check on new 2022 Lanuches..
+        Check on new 2022 Launches..
         <div class="right"></div>
       </button></a></li>
       

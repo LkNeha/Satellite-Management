@@ -1,9 +1,4 @@
-<!-- <?php
-session_start();
-if(null==($_SESSION['DATE_OF_LAUNCH_1'] && $_SESSION['DATE_OF_LAUNCH_2'])){
-  header('location:login.php');
-}
-?>  -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,10 +26,8 @@ if(null==($_SESSION['DATE_OF_LAUNCH_1'] && $_SESSION['DATE_OF_LAUNCH_2'])){
 <?php
 // include 'connect.php';
 $connection= mysqli_connect("localhost","root","");
-$db= mysqli_select_db($connection,'satellitemanagement');
-$fdate= $_SESSION['DATE_OF_LAUNCH_1']; 
-$tdate= $_SESSION['DATE_OF_LAUNCH_2']; 
-$query="select * from `satellite` where DATE_OF_LAUNCH BETWEEN '$fdate' and '$tdate'";                
+$db= mysqli_select_db($connection,'satellitemanagement'); 
+$query="select * from `satellite` where DATE_OF_LAUNCH BETWEEN '2022-01-01' and '2022-12-12'";                
 $result=mysqli_query($connection,$query);
 $total=mysqli_num_rows($result);
 if($total!=0){
@@ -64,10 +57,15 @@ if($total!=0){
          ?>
          <?php
     }
-}else{
-    session_start();
-    header('location:noentry.php');
 }
+else{
+    
+    session_start();
+    header('location:new.php');
+    
+    
+}
+
 
 ?>
 </table>

@@ -25,12 +25,7 @@ if(!isset($_SESSION['SATNAME'])){
                  
                  $result=mysqli_query($connection, $query);
                  $num=mysqli_num_rows($result);
-                 if($num==0){
-                     ?>
-                    <h1 style="font-family:'Times New Roman'"><br><br><?php echo "oops...The Satellite your looking for is not available!";?></h1>
-                    <?php
-                 }
-                 else{
+                 if($num!=0){
                     while($row= mysqli_fetch_array($result)){
                         ?>
                            <h1 style="font-family:'Times New Roman'"> <u>The <?php echo $name; ?></u></h1>
@@ -38,6 +33,11 @@ if(!isset($_SESSION['SATNAME'])){
                            echo  $row['SATNAME'] , ' is dropped by a launch vehicle ', $row['RNAME'],' with its sole dry weight of around ', $row['DRYWEIGHT'] ;?><br><br><?php echo '                                   Author- ',$row['SNAME'], ' from ',$row['ORGNAME'],' ',$row['LOCATION'];?></h2>
                        <?php
                    }
+                 }
+                 else{
+                    session_start();
+                    header('location:noentry.php');
+                    
                  }
                  
 
