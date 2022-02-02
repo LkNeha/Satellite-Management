@@ -24,7 +24,7 @@
 <body>
     <table border="10" class="table ">
         <tr>
-            <th>Organisation ID</th>
+            <!-- <th>Organisation ID</th> -->
             <th>Organisation Name</th>
             <th>Location</th>
             <th>Number of Satellite Launch</th>
@@ -45,7 +45,6 @@ $total=mysqli_num_rows($result);
 if($total!=0){
     while(($final=mysqli_fetch_assoc($result))){
         echo "<tr>
-        <td>".$final['ORGID']."</td>
         <td>".$final['ORGNAME']."</td>
         <td>".$final['LOCATION']."</td>
         <td>".$final['COUNT']."</td>

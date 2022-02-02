@@ -5,6 +5,7 @@ $invalid=0;
 $condid=0;
 $satid=0;
 $error=0;
+$error1=0;
  
 if($_SERVER['REQUEST_METHOD']=='POST'){
     // $connection= mysqli_connect("localhost","root","");
@@ -304,7 +305,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         
                       }
                       else{
-                        $error=1;
+                        $error1=1;
                         }
                     
                     }
@@ -533,6 +534,16 @@ echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
 }
 
 ?> 
+<?php
+
+if($error1){
+echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<strong></strong> Old value error! Make sure You entered date in yyyy-mm-dd format  
+
+</div>';
+}
+
+?>
 <section class="contact-from pt-4">  
   <div class="container">  
   <div class="row mt-5">  

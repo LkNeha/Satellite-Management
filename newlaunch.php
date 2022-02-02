@@ -69,9 +69,6 @@ else{
 
 ?>
 </table>
-<!-- <div text-align="align-right"> -->
-<!-- <button class="btn"><i class="fa fa-download"></i><a href='oexecl.php'> Download</a></button> -->
 
-<!-- </div> -->
 </body>
 </html>

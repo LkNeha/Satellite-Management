@@ -431,47 +431,47 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 
          
          <label for="Position">Condition ID</label>
-         <input type="text" id="pos" name="conid" placeholder="Enter the condition id.." autocomplete="off" required>
+         <input type="text" id="pos" name="conid" placeholder="Enter the condition ID" autocomplete="off" required>
 
          
          <label for="Position">Class of orbit</label>
-         <input type="text" id="pos" name="orbit" placeholder="Enter the class of orbit.." autocomplete="off" required>
+         <input type="text" id="pos" name="orbit" placeholder="Enter the class of orbit" autocomplete="off" required>
 
          
          <label for="Position">Orbit type</label>
-         <input type="text" id="pos" name="type" placeholder="Enter the orbit type.." autocomplete="off" required>
+         <input type="text" id="pos" name="type" placeholder="Enter the orbit type" autocomplete="off" required>
 
          
          <label for="Position">Longitude</label>
-         <input type="text" id="pos" name="longi" placeholder="Enter the longitude.." autocomplete="off" required>
+         <input type="text" id="pos" name="longi" placeholder="Enter the longitude(in degrees)" autocomplete="off" required>
 
          <label for="Position">Apogee</label>
-         <input type="text" id="pos" name="apogee" placeholder="Enter apogee values" autocomplete="off" required>
+         <input type="text" id="pos" name="apogee" placeholder="Enter apogee values (in km)" autocomplete="off" required>
 
          <label for="Position">Perigee</label>
-         <input type="text" id="pos" name="perigee" placeholder="Enter the perigee value" autocomplete="off" required>
+         <input type="text" id="pos" name="perigee" placeholder="Enter the perigee value (in km)" autocomplete="off" required>
         
          
          <label for="Position">Eccentricity</label>
-         <input type="text" id="pos" name="eccen" placeholder="Enter the eccentricity.." autocomplete="off" required>
+         <input type="text" id="pos" name="eccen" placeholder="Enter the Eccentricity" autocomplete="off" required>
 
          
          <label for="Position">Inclination</label>
-         <input type="text" id="pos" name="incli" placeholder="Enter the inclination.." autocomplete="off" required>
+         <input type="text" id="pos" name="incli" placeholder="Enter the Inclination (in degrees)" autocomplete="off" required>
 
          
          <label for="Position">Launch mass</label>
-         <input type="text" id="pos" name="launchmass" placeholder="Enter the launch mass.." autocomplete="off" required>
+         <input type="text" id="pos" name="launchmass" placeholder="Enter the launch mass (in kg)" autocomplete="off" required>
 
          
          <label for="Position">Power</label>
-         <input type="text" id="pos" name="power" placeholder="Enter the power.." autocomplete="off" required>
+         <input type="text" id="pos" name="power" placeholder="Enter the power (in watts)" autocomplete="off" required>
         
          <label for="Position">Period</label>
-         <input type="text" id="pos" name="launchtime" placeholder="Enter the period.." autocomplete="off" required>
+         <input type="text" id="pos" name="launchtime" placeholder="Enter the period (in minutes)" autocomplete="off" required>
          
          <label for="Position">Launch Time</label>
-         <input type="time" id="pos" name="Period" placeholder="Enter the launch time.." autocomplete="off" required>
+         <input type="time" id="pos" name="Period" placeholder="Enter the launch time" autocomplete="off" required>
 
 
          <br>
