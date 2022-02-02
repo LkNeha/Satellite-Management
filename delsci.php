@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $sid=$_POST['sid'];
         $satid=$_POST['satid'];
         $condid=$_POST['condid'];
-        $query="select * from `scientist` SC, `satellite` S, `conditions` C , `uploads` U, `follows` F where SC.SID=U.SID and S.SATID=U.SATID and S.SATID=F.SATID and F.CONDID=C.CONID and  SID='$sid'";
+        $query="select * from `scientist` SC, `satellite` S, `conditions` C , `uploads` U, `follows` F where SC.SID=U.SID and S.SATID=U.SATID and S.SATID=F.SATID and F.CONDID=C.CONDID and  SC.SID='$sid' and C.CONDID='$condid' and S.SATID='$satid'";
         $result=mysqli_query($connection,$query);
         if($result){
             $count=mysqli_num_rows($result);
@@ -80,9 +80,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
               }
             }
             else{
-              $fail=1;
+              $invalid=1;
             }
-        }else{
+        }
+        else{
           $invalid=1;
         }
 }

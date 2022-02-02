@@ -75,7 +75,16 @@ Registration Form
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
 <link rel="icon" href="images/nwicon.png" type="image/png">
 </head> 
+<script>
+function isNumberKey(evt)
+{
+	var charCode = (evt.which) ? evt.which : event.keyCode
+	if (charCode > 31 && (charCode < 48 || charCode > 57))
+	return false;
 
+	return true;
+}
+</script>
 <script>
   function toggle(){
     var password=document.querySelector('[name=pswd]');
@@ -171,7 +180,7 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
   
               <div class="col-md-6">  
                 <div class="form-group">  
-                  <input type="text" name="phone" class="form-control" placeholder="Phone number" autocomplete="off"  required >  
+                  <input type="text" name="phone" class="form-control" placeholder="Phone number" autocomplete="off" onkeypress="return isNumberKey(event)"  required >  
                 </div>  
               </div>  
   
