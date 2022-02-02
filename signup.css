@@ -77,10 +77,10 @@ body {
       margin:auto;
       display:block;
       }  
-      button:hover {  
+      /* button:hover {  
       color: #FFFFFF;  
       background-color: #282929;  
-      }  
+      }   */
       .button {  
       display: inline-block;  
       padding: 0.35em 1.2em;  
@@ -96,9 +96,24 @@ body {
       transition: all 0.2s;
       border-radius: 100px;  
        align-items: center; 
+      
+      
        
-      }  
-      .button:hover {  
+      } 
+       
+      .button:hover{  
       color: #FFFFFF;  
       background-color: #282929;  
       } 
+
+    button a {
+      text-decoration: none;
+      text-decoration-color: black;
+     }
+
+      a:hover{
+        
+        color: #FFFFFF;  
+        background-color: #282929; 
+      
+      }

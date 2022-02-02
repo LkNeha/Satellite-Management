@@ -45,7 +45,7 @@ h4 {
 }
 /* /inner box/   */
 .form-wrapper {  
-  height:291px;
+  height:209px;
   background:#b1a7a6;  
   border-radius: 20px;  
   padding: 20px;  
@@ -90,8 +90,8 @@ label{
 button {  
 
    position: absolute;
-    right: 267px;
-    top: 241px;
+    right: 275px;
+    top: 152px;
 
     display: inline-block;  
     padding: 0.35em 1.2em;  

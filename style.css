@@ -8,6 +8,7 @@
 body{
   background-image: url('images/login2.jpg');  
   background-size: contain;
+  /* background-repeat: none; */
   display: flex;
   height: 100vh;
   text-align: center;
@@ -16,7 +17,7 @@ body{
   /* background: #151515; */
 }
 .login-form{
-   left: 349px; 
+   left: 316px; 
   position: relative;
   width: 370px;
   height: auto;
@@ -88,11 +89,12 @@ button{
   font-weight: 600;
   letter-spacing: 1px;
   cursor: pointer;
+ 
 }
 button:hover{
   color: #aeafae;
   border: 1px solid #a6a7a6;
-  box-shadow: 0 0 5px rgba(183, 185, 183, 0.3),
+  box-shadow: 0 0 5px rgba(69, 73, 69, 0.3),
               0 0 10px rgba(177, 180, 177, 0.2),
               0 0 15px rgba(0, 0, 0, 0.1),
               0 2px 0 black;

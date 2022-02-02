@@ -180,7 +180,7 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
   
               <div class="col-md-6">  
                 <div class="form-group">  
-                  <input type="text" name="phone" class="form-control" placeholder="Phone number" autocomplete="off" onkeypress="return isNumberKey(event)"  required >  
+                  <input type="text" name="phone" class="form-control" placeholder="Phone number" autocomplete="off" onkeypress="return isNumberKey(event)" maxlength="10"  required >  
                 </div>  
               </div>  
   
@@ -398,8 +398,9 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <!-- <input type="button" class="reset" align="left">  -->
             <div class="mt-3" style="align-items: center;">  
 
-            <button name="register"  class="reg">REGISTER</button>  
-            <input type="button" class="button" value="Go back!" onclick="history.back()">           
+            <button name="register"  class="reg">REGISTER</button> 
+             <button class="button"><a href="/DBMS-project/login.php">Go back</a></button> 
+            <!-- <input type="button" class="button" value="Go back!" onclick="history.back()">            -->
      </div>  
           </form>  
         </div>  
