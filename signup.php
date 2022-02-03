@@ -2,6 +2,10 @@
 $user=0;
 $sucess=0;
 $passw=0;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+ 
 if($_SERVER['REQUEST_METHOD']=='POST'){
   include 'connect.php';
   $mailfrom='satellitemag001@gmail.com';
@@ -34,26 +38,54 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       else{
         $query = "insert into `visitor` (`VUNAME`,`VFNAME`,`VLNAME`,`VGENDER`,`VDOB`,`VDESIG`,`VEMAIL`,`VPHONE`,`VPASSWD`,`VCOUNTRY`,`num`) values ('$username','$fname','$lname','$gender','$dob','$desig','$email','$phone','$pswd','$country','NULL')";
         $result= mysqli_query($connection,$query);
-        if($result){
+        if($result && sendmail($email)){
           // $sql="update `visitor` set count=0 where VUNAME = '$username'";
           // mysqli_query($connection,$sql);
           $sucess=1;
         }
         else{
-          echo '<script type="text/javascript">alert("Data  not  Inserted")</script>';
+          echo '<script type="text/javascript">alert("Server down")</script>';
         }
       }
     }
   }
-$subject="Confirmation: Registration Successfull!";
 
-$message="Dear" . $fname . $lname ."\n\n". "Thank you for registering ! Keep Spacifying!";
+}
+function sendmail($email){
+  require ('PHPMailer/PHPMailer.php');
+  require ('PHPMailer/SMTP.php');
+  require ('PHPMailer/Exception.php');
+  $mail = new PHPMailer(true);
+  try {
+    //Server settings
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'satellitemanage@gmail.com';                     //SMTP username
+    $mail->Password   = 'Satellitemag001$';                               //SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-$headers="From:". $mailfrom;
+    //Recipients
+    $mail->setFrom('satellitemanage@gmail.com', 'SAT developers');
+    $mail->addAddress($email);     //Add a recipient
+    
 
-$resultmail=mail($email,$subject,$message,$headers);
+    
 
-var_dump($resultmail);
+    //Content
+    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->Subject = "Confirmation: Registration Successfull!";
+    $mail->Body    = "Thank you  for registering ! Keep Spacifying!";
+
+    $mail->send();
+    // echo 'Message has been sent';
+    return true;
+} 
+catch (Exception $e) {
+    // echo "Message could not be sent. ";
+    return false;
+}
 }
 ?>
 <! DOCTYPE html>  
