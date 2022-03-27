@@ -2,6 +2,7 @@
 $user=0;
 $sucess=0;
 $passw=0;
+$equ=0;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -24,8 +25,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   $uppercase = preg_match('@[A-Z]@', $pswd);
   $lowercase = preg_match('@[a-z]@', $pswd);
   $specialChars = preg_match('@[^\w]@', $pswd);
-  if(strlen($pswd) < 8 || !$number || !$uppercase || !$lowercase || !$specialChars && ($pswd==$cpswd)) {
+  if(strlen($pswd) < 8 || !$number || !$uppercase || !$lowercase || !$specialChars) {
     $passw=1;
+  }
+  else if($pswd!=$cpswd){
+    $equ=1;
   }
   else{
     $sql ="select * from `visitor` where VUNAME='$username'";
@@ -38,12 +42,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       else{
         $query = "insert into `visitor` (`VUNAME`,`VFNAME`,`VLNAME`,`VGENDER`,`VDOB`,`VDESIG`,`VEMAIL`,`VPHONE`,`VPASSWD`,`VCOUNTRY`,`num`) values ('$username','$fname','$lname','$gender','$dob','$desig','$email','$phone','$pswd','$country','NULL')";
         $result= mysqli_query($connection,$query);
-        if($result && sendmail($email)){
+        if($result ){
           // $sql="update `visitor` set count=0 where VUNAME = '$username'";
           // mysqli_query($connection,$sql);
           $sucess=1;
         }
         else{
+          $query="delete from `visitor` where VUNAME = '$username'";
+          $result=mysqli_query($connection,$query);
           echo '<script type="text/javascript">alert("Server down")</script>';
         }
       }
@@ -51,42 +57,56 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   }
 
 }
-function sendmail($email){
-  require ('PHPMailer/PHPMailer.php');
-  require ('PHPMailer/SMTP.php');
-  require ('PHPMailer/Exception.php');
-  $mail = new PHPMailer(true);
-  try {
-    //Server settings
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'satellitemanage@gmail.com';                     //SMTP username
-    $mail->Password   = 'Satellitemag001$';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+// function sendmail($email){
+//   require ('PHPMailer/PHPMailer.php');
+//   require ('PHPMailer/SMTP.php');
+//   require ('PHPMailer/Exception.php');
+//   $mail = new PHPMailer(true);
+//   try {
+//     //Server settings
+//     $mail->isSMTP();                                            //Send using SMTP
+//     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+//     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+//     $mail->Username   = 'satellitemanage@gmail.com';                     //SMTP username
+//     $mail->Password   = 'Satellitemag001$';                               //SMTP password
+//     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+//     $mail->Port       = 465;                        //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+//   }
+//   catch (Exception $e){
+//     echo '<script type="text/javascript">alert("error in set")</script>';
 
-    //Recipients
-    $mail->setFrom('satellitemanage@gmail.com', 'SAT developers');
-    $mail->addAddress($email);     //Add a recipient
-    
 
-    
+//   }try{
+//       //Recipients
+//     $mail->setFrom('satellitemanage@gmail.com', 'SAT developers');
+//     $mail->addAddress($email);     //Add a recipient
+//   }
+//   catch (Exception $e) {
+//     echo '<script type="text/javascript">alert("error inre")</script>';
 
-    //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = "Confirmation: Registration Successfull!";
-    $mail->Body    = "Thank you  for registering ! Keep Spacifying!";
+//   }
+//  try{
+// //Content
+// $mail->isHTML(true);                                  //Set email format to HTML
+// $mail->Subject = "Confirmation: Registration Successfull!";
+// $mail->Body    = "Thank you  for registering ! Keep Spacifying!";
 
-    $mail->send();
-    // echo 'Message has been sent';
-    return true;
-} 
-catch (Exception $e) {
-    // echo "Message could not be sent. ";
-    return false;
-}
-}
+// $mail->send();
+// // echo 'Message has been sent';
+// // return true; 
+//  }
+   
+  
+//   catch (Exception $e) {
+//     echo '<script type="text/javascript">alert("error in content")</script>';
+
+//   // // echo "Message could not be sent. ";
+//   // return false;
+// } 
+// } 
+
+
+
 ?>
 <! DOCTYPE html>  
 <html>  
@@ -142,7 +162,7 @@ if($user){
 <?php
 if($passw){
   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>Note </strong> Password must be at least 8 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.
+  <strong>Note:</strong> Password must be at least 8 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.
   </div>';
 }
 ?>
@@ -150,6 +170,13 @@ if($passw){
 if($sucess){
 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 <strong>Woohooo</strong> Your signed in Successfully! Now go back to login page  
+</div>';
+}
+?>
+<?php
+if($equ){
+echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<strong></strong> Enter right confirm password  
 </div>';
 }
 ?>

@@ -51,6 +51,10 @@ if($total!=0){
          </tr>";
     }
 }
+else{
+    session_start();
+    header('location:noentry.php');
+}
 
 ?>
 </table>

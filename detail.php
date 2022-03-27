@@ -63,6 +63,10 @@ if($total!=0){
         <td>".$final['DRYWEIGHT']."</td> </tr>";
     }
 }
+else{
+    session_start();
+    header('location:noentry.php');
+}
 
 ?>
 <!-- </thead> -->
